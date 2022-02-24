@@ -11,7 +11,9 @@
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "mcamara/laravel-localization": "^1.7"
+        "laravel/ui": "^3.4",
+        "mcamara/laravel-localization": "^1.7",
+        "spatie/laravel-translatable": "^4.6"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

@@ -9,10 +9,13 @@
     <meta name="author" content="potenzaglobalsolutions.com" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     @include('layouts.head')
+
+    <!-- Toastr Notification -->
+    <link rel="stylesheet" href="{{asset('css/toastr.min.css')}}">
+    <script src="{{asset('js/toastr.min.js')}}"></script>
 </head>
 
 <body>
-
     <div class="wrapper">
 
         <!--=================================
@@ -54,6 +57,7 @@
  footer -->
 
     @include('layouts.footer-scripts')
+    @include('toastr')
 
 </body>
 
