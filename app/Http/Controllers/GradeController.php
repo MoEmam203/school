@@ -37,9 +37,13 @@ class GradeController extends Controller
      */
     public function store(GradeRequest $request)
     {
+        if(Grade::where('name->ar',$request->name_ar)->orWhere('name->en',$request->name_en)->exists()){
+            return redirect()->back()->withError(__('messages.exists'));
+        }
+
         try{
             $grade = new Grade;
-            $grade->name = ['en' => $request->name_en, 'ar' => $request->name];
+            $grade->name = ['en' => $request->name_en, 'ar' => $request->name_ar];
             $grade->notes = $request->notes;
             $grade->save();
 
@@ -82,12 +86,22 @@ class GradeController extends Controller
      */
     public function update(GradeRequest $request, Grade $grade)
     {
-        $grade->update([
-            'name' => ['en' => $request->name_en , 'ar' => $request->name],
-            'notes' => $request->notes
-        ]);
+        // if(Grade::where('id','!=',$grade->id)->where('name->ar',$request->name_ar)->orWhere('name->en',$request->name_en)->exists()){
+        //     return redirect()->back()->withError(__('messages.exists'));
+        // }
 
-        return redirect()->back()->withSuccess(__('messages.update'));
+        try{
+            $grade->update([
+                'name' => ['en' => $request->name_en , 'ar' => $request->name_ar],
+                'notes' => $request->notes
+            ]);
+
+            return redirect()->back()->withSuccess(__('messages.update'));
+        }
+        catch(\Throwable $e){
+            report($e);
+            return false;
+        }
     }
 
     /**
@@ -98,7 +112,13 @@ class GradeController extends Controller
      */
     public function destroy(Grade $grade)
     {
-        $grade->delete();
-        return redirect()->back()->withError(__('messages.delete'));
+        try{
+            $grade->delete();
+            return redirect()->back()->withError(__('messages.delete'));
+        }
+        catch(\Throwable $e){
+            report($e);
+            return false;
+        }
     }
 }

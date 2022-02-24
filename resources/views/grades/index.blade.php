@@ -87,10 +87,10 @@
                                                 @csrf
                                                 <div class="row">
                                                     <div class="col">
-                                                        <label for="name" class="mr-sm-2">
+                                                        <label for="name_ar" class="mr-sm-2">
                                                             {{ trans('Grades_trans.stage_name_ar') }}:
                                                         </label>
-                                                        <input id="name" type="text" name="name"
+                                                        <input id="name_ar" type="text" name="name_ar"
                                                                 class="form-control"
                                                                 value="{{$grade->getTranslation('name', 'ar')}}"
                                                                 required>
@@ -186,10 +186,10 @@
                         @csrf
                         <div class="row">
                             <div class="col">
-                                <label for="name" class="mr-sm-2">
+                                <label for="name_ar" class="mr-sm-2">
                                     {{ trans('Grades_trans.stage_name_ar') }}:
                                 </label>
-                                <input id="name" type="text" name="name" class="form-control">
+                                <input id="name_ar" type="text" name="name_ar" class="form-control">
                             </div>
                             <div class="col">
                                 <label for="name_en" class="mr-sm-2">

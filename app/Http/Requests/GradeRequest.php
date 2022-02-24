@@ -24,7 +24,7 @@ class GradeRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|min:3|max:255',
+            'name_ar' => 'required|string|min:3|max:255',
             'name_en' => 'required|string|min:3|max:255'
         ];
     }
@@ -32,10 +32,10 @@ class GradeRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => __('validation.required'),
-            'name.string' => __('validation.string'),
-            'name.min' => __('validation.min'),
-            'name.max' => __('validation.max'),
+            'name_ar.required' => __('validation.required'),
+            'name_ar.string' => __('validation.string'),
+            'name_ar.min' => __('validation.min'),
+            'name_ar.max' => __('validation.max'),
             'name_en.required' => __('validation.required'),
             'name_en.string' => __('validation.string'),
             'name_en.min' => __('validation.min'),
