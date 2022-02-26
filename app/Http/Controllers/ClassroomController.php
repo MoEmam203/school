@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\GradeRequest;
+use App\Http\Requests\ClassroomRequest;
+use App\Models\Classroom;
 use App\Models\Grade;
 use Illuminate\Http\Request;
 
-class GradeController extends Controller
+class ClassroomController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,9 @@ class GradeController extends Controller
      */
     public function index()
     {
+        $classrooms = Classroom::all();
         $grades = Grade::all();
-        return view('grades.index',['grades'=>$grades]);
+        return view('classrooms.index',['classrooms' => $classrooms,'grades' => $grades]);
     }
 
     /**
@@ -35,17 +37,23 @@ class GradeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(GradeRequest $request)
+    public function store(ClassroomRequest $request)
     {
         try{
-            $grade = new Grade;
-            $grade->name = ['en' => $request->name_en, 'ar' => $request->name_ar];
-            $grade->notes = $request->notes;
-            $grade->save();
+            $classes = $request->List_Classes;
+            foreach($classes as $class){
+                $classroom = new Classroom;
+
+                $classroom->name = ['ar' => $class['name_ar'] , 'en' => $class['name_en']];
+
+                $classroom->grade_id = $class['grade_id'];
+
+                $classroom->save();
+            }
 
             return redirect()->back()->withSuccess(__('messages.success'));
-        }
-        catch (\Exception $e){
+
+        }catch (\Exception $e){
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
@@ -53,10 +61,10 @@ class GradeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Grade  $grade
+     * @param  \App\Models\Classroom  $classroom
      * @return \Illuminate\Http\Response
      */
-    public function show(Grade $grade)
+    public function show(Classroom $classroom)
     {
         //
     }
@@ -64,10 +72,10 @@ class GradeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Grade  $grade
+     * @param  \App\Models\Classroom  $classroom
      * @return \Illuminate\Http\Response
      */
-    public function edit(Grade $grade)
+    public function edit(Classroom $classroom)
     {
         //
     }
@@ -76,20 +84,20 @@ class GradeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Grade  $grade
+     * @param  \App\Models\Classroom  $classroom
      * @return \Illuminate\Http\Response
      */
-    public function update(GradeRequest $request, Grade $grade)
+    public function update(ClassroomRequest $request, Classroom $classroom)
     {
         try{
-            $grade->update([
-                'name' => ['en' => $request->name_en , 'ar' => $request->name_ar],
-                'notes' => $request->notes
+            $classroom->update([
+                'name' => ['ar' => $request->name_ar , 'en' => $request->name_en],
+                'grade_id' => $request->grade_id
             ]);
 
             return redirect()->back()->withSuccess(__('messages.update'));
-        }
-        catch (\Exception $e){
+
+        }catch (\Exception $e){
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
@@ -97,16 +105,15 @@ class GradeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Grade  $grade
+     * @param  \App\Models\Classroom  $classroom
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Grade $grade)
+    public function destroy(Classroom $classroom)
     {
-        try{
-            $grade->delete();
+        try {
+            $classroom->delete();
             return redirect()->back()->withError(__('messages.delete'));
-        }
-        catch (\Exception $e){
+        }catch (\Exception $e){
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }

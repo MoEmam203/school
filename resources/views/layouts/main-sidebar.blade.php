@@ -12,31 +12,28 @@
                             <div class="clearfix"></div>
                         </a>
                     </li>
-                    <!-- menu title -->
-                    <li class="mt-10 mb-10 text-muted pl-4 font-medium menu-title">Components </li>
-                    <!-- menu item Elements-->
+                    <!--Grades-->
                     <li>
-                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#elements">
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#grades">
                             <div class="pull-left"><i class="ti-palette"></i><span
                                     class="right-nav-text">{{ __('mainside.Grades') }}</span></div>
                             <div class="pull-right"><i class="ti-plus"></i></div>
                             <div class="clearfix"></div>
                         </a>
-                        <ul id="elements" class="collapse" data-parent="#sidebarnav">
+                        <ul id="grades" class="collapse" data-parent="#sidebarnav">
                             <li><a href="{{ route('grades.index') }}">{{ __('mainside.Grades List') }}</a></li>
                         </ul>
                     </li>
-                    <!-- menu item calendar-->
+                    <!-- Classrooms -->
                     <li>
-                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#calendar-menu">
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#classrooms">
                             <div class="pull-left"><i class="ti-calendar"></i><span
-                                    class="right-nav-text">calendar</span></div>
+                                    class="right-nav-text">{{ __('mainside.classrooms') }}</span></div>
                             <div class="pull-right"><i class="ti-plus"></i></div>
                             <div class="clearfix"></div>
                         </a>
-                        <ul id="calendar-menu" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="calendar.html">Events Calendar </a> </li>
-                            <li> <a href="calendar-list.html">List Calendar</a> </li>
+                        <ul id="classrooms" class="collapse" data-parent="#sidebarnav">
+                            <li> <a href="{{ route('classrooms.index') }}">{{ __('mainside.classroomsList') }}</a> </li>
                         </ul>
                     </li>
                     <!-- menu item todo-->

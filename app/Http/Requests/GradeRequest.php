@@ -23,23 +23,21 @@ class GradeRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name_ar' => 'required|string|min:3|max:255',
-            'name_en' => 'required|string|min:3|max:255'
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            'name_ar.required' => __('validation.required'),
-            'name_ar.string' => __('validation.string'),
-            'name_ar.min' => __('validation.min'),
-            'name_ar.max' => __('validation.max'),
-            'name_en.required' => __('validation.required'),
-            'name_en.string' => __('validation.string'),
-            'name_en.min' => __('validation.min'),
-            'name_en.max' => __('validation.max'),
-        ];
+        switch(request()->method){
+            case 'POST':
+                return [
+                    'name_ar' => 'required|string|min:3|max:255|unique:grades,name->ar,'.$this->id,
+                    'name_en' => 'required|string|min:3|max:255|unique:grades,name->en,'.$this->id,
+                ];
+                break;
+            
+            case 'PUT':
+            case 'PATCH':
+                return [
+                    'name_ar' => 'required|string|min:3|max:255|unique:grades,name->ar,'.$this->grade->id,
+                    'name_en' => 'required|string|min:3|max:255|unique:grades,name->en,'.$this->grade->id,
+                ];
+                break;
+        }
     }
 }

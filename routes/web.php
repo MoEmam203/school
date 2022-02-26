@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClassroomController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GradeController;
@@ -29,6 +30,7 @@ Route::group(
         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath','auth']
     ], function(){
         Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard');
-        Route::resource('grades',GradeController::class);
+        Route::resource('grades',GradeController::class)->except(['create','show','edit']);
+        Route::resource('classrooms',ClassroomController::class)->except(['create','show','edit']);
     }
 );
