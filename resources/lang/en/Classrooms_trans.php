@@ -9,5 +9,7 @@ return [
     'grade' => 'Grade',
     'edit_Classroom' => 'Edit Classroom',
     'delete_classroom' => 'Delete Classroom',
-    'warning_classroom' => 'Are u sure u want to remove this classroom ?'
+    'warning_classroom' => 'Are u sure u want to remove this classroom ?',
+    'delete_all' => 'Delete All Selected',
+    'filter_by_grade' => 'Filter by grade'
 ];

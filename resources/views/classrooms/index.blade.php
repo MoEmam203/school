@@ -33,12 +33,27 @@
                 <button type="button" class="button x-small" data-toggle="modal" data-target="#exampleModal">
                     {{ __('Classrooms_trans.add_class') }}
                 </button>
+
+                <button type="button" id="deleteAllBTN" class="button x-small">
+                    {{ __('Classrooms_trans.delete_all') }}
+                </button>
                 <br><br>
+
+                <form action="{{ route('classrooms.filter') }}" method="POST">
+                    @csrf
+                    <select class="fancyselect" name="grade_id" onchange="this.form.submit()">
+                        <option selected disabled>{{ __('Classrooms_trans.filter_by_grade') }}</option>
+                        @foreach ($grades as $grade)
+                            <option value="{{ $grade->id }}">{{ $grade->name }}</option>
+                        @endforeach
+                    </select>
+                </form>
 
                 <div class="table-responsive">
                     <table id="datatable" class="table  table-hover table-sm table-bordered p-0" data-page-length="50" style="text-align: center">
                         <thead>
                             <tr>
+                                <th><input type="checkbox" name="deleteAll" id="deleteAll" onclick="selectAll('box',this)"></th>
                                 <th>#</th>
                                 <th>{{ __('Classrooms_trans.classroomName') }}</th>
                                 <th>{{ __('Classrooms_trans.classroomGrade') }}</th>
@@ -46,8 +61,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($classrooms as $key => $classroom)
+                            @if(isset($details))
+                                <?php $classroomsList = $details ?>
+                            @else
+                                <?php $classroomsList = $classrooms ?>
+                            @endif
+                            @foreach ($classroomsList as $key => $classroom)
                                 <tr>
+                                    <td><input type="checkbox" class="box" name="box" id="box" value="{{ $classroom->id }}"></td>
                                     <td>{{ ++$key }}</td>
                                     <td>{{ $classroom->name }}</td>
                                     <td>{{ $classroom->grade->name }}</td>
@@ -247,10 +268,55 @@
         </div>
 
     </div>
+
+    <!-- delete_all_modal_classroom -->
+    <div class="modal fade" id="deleteAllModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 style="font-family: 'Cairo', sans-serif;" class="modal-title" id="exampleModalLabel">
+                        {{ __('Classrooms_trans.delete_classroom') }}
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{route('classrooms.deleteAll')}}" method="POST">
+                        @csrf
+                        {{ __('Classrooms_trans.warning_classroom') }}
+                        <input type="hidden" name="deleted_all" class="form-control" id="deleted_all">
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('general.Close')
+                                }}</button>
+                            <button type="submit" class="btn btn-danger">{{ __('general.Submit') }}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- row closed -->
 @endsection
 @section('js')
+
+    <script>
+        $(function(){
+            // Delete all selected classrooms
+            $('#deleteAllBTN').click(function(){
+                let selected = new Array();
+                $('#datatable input[type="checkbox"]:checked').each(function(){
+                    selected.push(this.value)
+                })
+
+                if(selected.length > 0){
+                    $('#deleteAllModal input[name="deleted_all"]').val(selected);
+                    $('#deleteAllModal').modal('show');
+                }
+            });
+        })
+    </script>
 
 @endsection

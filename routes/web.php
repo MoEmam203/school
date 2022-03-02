@@ -31,6 +31,8 @@ Route::group(
     ], function(){
         Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard');
         Route::resource('grades',GradeController::class)->except(['create','show','edit']);
+        Route::post('/deleteAll',[ClassroomController::class,'deleteAll'])->name('classrooms.deleteAll');
+        Route::post('/classrooms/filter',[ClassroomController::class,'filter'])->name('classrooms.filter');
         Route::resource('classrooms',ClassroomController::class)->except(['create','show','edit']);
     }
 );

@@ -103,6 +103,9 @@ class GradeController extends Controller
     public function destroy(Grade $grade)
     {
         try{
+            if($grade->classrooms()){
+                return redirect()->back()->withError(__('messages.haveData',['first' => __('Classrooms_trans.grade') , 'second' => __('mainside.classrooms')]));
+            }
             $grade->delete();
             return redirect()->back()->withError(__('messages.delete'));
         }

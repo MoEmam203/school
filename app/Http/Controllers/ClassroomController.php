@@ -117,4 +117,16 @@ class ClassroomController extends Controller
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
+
+    public function deleteAll(Request $request){
+        $ids = explode(',', $request->deleted_all);
+        Classroom::whereIn('id',$ids)->delete();
+        return redirect()->back()->withError(__('messages.delete'));
+    }
+
+    public function filter(Request $request){
+        $grades = Grade::all();
+        $search = Classroom::where('grade_id',$request->grade_id)->get();
+        return view('classrooms.index',['grades' => $grades])->withDetails($search);
+    }
 }

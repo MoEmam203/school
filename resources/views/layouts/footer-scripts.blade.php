@@ -28,3 +28,20 @@
 <script src="{{ URL::asset('assets/js/lobilist.js') }}"></script>
 <!-- custom -->
 <script src="{{ URL::asset('assets/js/custom.js') }}"></script>
+
+<script>
+    function selectAll(checkboxes,elm){
+        let elemnets = document.getElementsByClassName(checkboxes);
+        let length = elemnets.length;
+
+        if(elm.checked == true){
+            for(let i=0 ; i<length ; i++){
+                elemnets[i].checked = true;
+            }
+        }else{
+            for(let i=0 ; i<length ; i++){
+                elemnets[i].checked = false;
+            }
+        }
+    }
+</script>
