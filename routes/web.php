@@ -4,6 +4,7 @@ use App\Http\Controllers\ClassroomController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GradeController;
+use App\Http\Controllers\SectionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,5 +35,7 @@ Route::group(
         Route::post('/deleteAll',[ClassroomController::class,'deleteAll'])->name('classrooms.deleteAll');
         Route::post('/classrooms/filter',[ClassroomController::class,'filter'])->name('classrooms.filter');
         Route::resource('classrooms',ClassroomController::class)->except(['create','show','edit']);
+        Route::resource('sections',SectionController::class)->except(['create','show','edit']);
+        Route::post('/sections/getClassrooms/{id}',[SectionController::class,'getClassrooms'])->name('getClassrooms');
     }
 );
