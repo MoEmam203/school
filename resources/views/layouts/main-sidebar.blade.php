@@ -48,6 +48,19 @@
                             <li> <a href="{{ route('sections.index') }}">{{ __('mainside.sectionsList') }}</a> </li>
                         </ul>
                     </li>
+                    <!-- Parents -->
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#parents">
+                            <div class="pull-left"><i class="ti-blackboard"></i><span
+                                    class="right-nav-text">{{ __('mainside.parents') }}</span></div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="parents" class="collapse" data-parent="#sidebarnav">
+                            <li> <a href="#">{{ __('mainside.parentsList') }}</a> </li>
+                            <li> <a href="{{ route('parents.create') }}">{{ __('mainside.parentsCreate') }}</a> </li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>

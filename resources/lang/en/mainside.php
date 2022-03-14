@@ -7,5 +7,8 @@ return [
     'classrooms' => 'Classrooms',
     'classroomsList' => 'Classrooms List',
     'sections' => 'Sections',
-    'sectionsList' => 'Sections List'
+    'sectionsList' => 'Sections List',
+    'parents' => 'Parents',
+    'parentsList' => 'Parents List',
+    'parentsCreate' => 'Add Parent'
 ];
