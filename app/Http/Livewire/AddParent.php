@@ -2,17 +2,23 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Blood_Type;
-use App\Models\MyParent;
-use App\Models\Nationality;
-use App\Models\Religion;
-use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
+use App\Models\MyParent;
+use App\Models\Religion;
+use App\Models\Blood_Type;
+use App\Models\Nationality;
+use Livewire\WithFileUploads;
+use App\Models\ParentAttachment;
+use Illuminate\Support\Facades\Hash;
 
 class AddParent extends Component
 {
-    public $successMessage = '';
-    public $catchError = '';
+    use WithFileUploads;
+
+    public $successMessage = '',
+            $catchError = '',
+            $photos,
+            $updateMode=false;
 
     public $currentStep = 1
 
@@ -116,6 +122,16 @@ class AddParent extends Component
             $myParent->mother_address = $this->mother_address;
 
             $myParent->save();
+
+            if (!empty($this->photos)){
+                foreach ($this->photos as $photo) {
+                    $photo->storeAs($this->father_national_id, $photo->getClientOriginalName(), $disk = 'parent_attachments');
+                    ParentAttachment::create([
+                        'file_name' => $photo->getClientOriginalName(),
+                        'parent_id' => $myParent->id,
+                    ]);
+                }
+            }
             
             $this->successMessage = __('messages.success');
             $this->clearForm();
@@ -157,5 +173,7 @@ class AddParent extends Component
         $this->mother_blood_type_id = '';
         $this->mother_religion_id ='';
         $this->mother_address ='';
+
+        $this->photos = [];
     }
 }

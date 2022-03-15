@@ -3,7 +3,7 @@
 return [
     'Step1' => 'Father Info.',
     'Step2' => 'Mother Info.',
-    'Step3' => 'Confirm Info.',
+    'Step3' => 'Attachments & Confirm Info.',
     'Back' => 'Back',
     'Finish' => 'Finish',
     'confirm' => 'Are you sure to confirm these information ?',
@@ -37,5 +37,7 @@ return [
     'mother_blood_type_id' => 'Mother blood_type id',
     'mother_religion_id' => 'Mother religion id',
     'mother_phone' => 'Mother phone',
-    'mother_address' => 'Mother address'
+    'mother_address' => 'Mother address',
+
+    'Attachments' => 'Attachments'
 ];
