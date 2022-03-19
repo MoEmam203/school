@@ -39,5 +39,8 @@ return [
     'mother_phone' => 'رقم هاتف الام',
     'mother_address' => 'عنوان الام',
 
-    'Attachments' => 'المرفقات'
+    'Attachments' => 'المرفقات',
+
+    'deleteParent' => 'حذف ولي الامر',
+    'warningParent' => 'هل انت متاكد من حذف ولي الامر هذا ؟'
 ];

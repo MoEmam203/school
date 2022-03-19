@@ -12,13 +12,15 @@
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="col">
-                        <label for="title">{{__('Parent_trans.password')}}</label>
-                        <input type="password" wire:model="password" class="form-control" >
-                        @error('password')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
+                    @if (!$updateMode)
+                        <div class="col">
+                            <label for="title">{{__('Parent_trans.password')}}</label>
+                            <input type="password" wire:model="password" class="form-control">
+                            @error('password')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    @endif
                 </div>
 
                 <div class="form-row">
@@ -128,10 +130,16 @@
                     @enderror
                 </div>
 
-                <button class="btn btn-success btn-sm nextBtn m-2" wire:click="firstStepSubmit"
+                @if ($updateMode)
+                    <button class="btn btn-success btn-sm nextBtn m-2" wire:click="firstStepEdit"
                         type="button">{{__('Parent_trans.Next')}}
-                </button>
-
+                    </button>
+                @else
+                    <button class="btn btn-success btn-sm nextBtn m-2" wire:click="firstStepSubmit"
+                        type="button">{{__('Parent_trans.Next')}}
+                    </button>
+                @endif
+                
             </div>
         </div>
     </div>

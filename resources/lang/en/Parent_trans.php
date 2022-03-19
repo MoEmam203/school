@@ -39,5 +39,8 @@ return [
     'mother_phone' => 'Mother phone',
     'mother_address' => 'Mother address',
 
-    'Attachments' => 'Attachments'
+    'Attachments' => 'Attachments',
+
+    'deleteParent' => 'Delete Parent',
+    'warningParent' => 'Are you sure you want to delete this parent ?'
 ];

@@ -112,13 +112,18 @@
                 </div>
 
                 <button class="btn btn-danger btn-sm nextBtn m-2" type="button" wire:click="back(1)">
-                    {{trans('Parent_trans.Back')}}
+                    {{__('Parent_trans.Back')}}
                 </button>
 
-                <button class="btn btn-success btn-sm nextBtn m-2" wire:click="secondStepSubmit"
+                @if ($updateMode)
+                    <button class="btn btn-success btn-sm nextBtn m-2" wire:click="secondStepEdit"
                         type="button">{{__('Parent_trans.Next')}}
-                </button>
-
+                    </button>
+                @else
+                    <button class="btn btn-success btn-sm nextBtn m-2" wire:click="secondStepSubmit"
+                        type="button">{{__('Parent_trans.Next')}}
+                    </button>
+                @endif
             </div>
         </div>
     </div>

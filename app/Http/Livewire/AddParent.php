@@ -10,6 +10,7 @@ use App\Models\Nationality;
 use Livewire\WithFileUploads;
 use App\Models\ParentAttachment;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class AddParent extends Component
 {
@@ -18,7 +19,9 @@ class AddParent extends Component
     public $successMessage = '',
             $catchError = '',
             $photos,
-            $updateMode=false;
+            $updateMode=false,
+            $showTable = true,
+            $parent_id;
 
     public $currentStep = 1
 
@@ -44,20 +47,19 @@ class AddParent extends Component
         ]);
     }
 
-
-
     public function render()
     {
         return view('livewire.parents.add-parent',[
             'nationalities' => Nationality::all(),
             'blood_types' => Blood_Type::all(),
-            'religions' => Religion::all()
+            'religions' => Religion::all(),
+            'my_parents' => MyParent::all()
         ]);
     }
 
     public function firstStepSubmit(){
         $this->validate([
-            'email' => 'required|unique:my_parents,email,'.$this->id,
+            'email' => 'required|email|unique:my_parents,email,'.$this->id,
             'password' => 'required|min:8|max:255',
             'father_name_ar' => 'required|string|min:3|max:255',
             'father_name_en' => 'required|string|min:3|max:255',
@@ -125,7 +127,7 @@ class AddParent extends Component
 
             if (!empty($this->photos)){
                 foreach ($this->photos as $photo) {
-                    $photo->storeAs($this->father_national_id, $photo->getClientOriginalName(), $disk = 'parent_attachments');
+                    $photo->storeAs($myParent->id, $photo->getClientOriginalName(), $disk = 'parent_attachments');
                     ParentAttachment::create([
                         'file_name' => $photo->getClientOriginalName(),
                         'parent_id' => $myParent->id,
@@ -175,5 +177,147 @@ class AddParent extends Component
         $this->mother_address ='';
 
         $this->photos = [];
+    }
+
+    public function showAddForm(){
+        $this->showTable = false;
+    }
+
+    public function edit($id){
+        $this->showTable = false;
+        $this->updateMode = true;
+
+        $myParent = MyParent::findOrFail($id);
+        $this->parent_id = $id;
+
+        $this->email = $myParent->email;
+        $this->password = $myParent->password;
+        $this->father_name_ar = $myParent->getTranslation('father_name', 'ar');
+        $this->father_name_en = $myParent->getTranslation('father_name', 'en');
+        $this->father_job_ar = $myParent->getTranslation('father_job', 'ar');
+        $this->father_job_en = $myParent->getTranslation('father_job', 'en');
+        $this->father_national_id = $myParent->father_national_id;
+        $this->father_passport_id = $myParent->father_passport_id;
+        $this->father_phone = $myParent->father_phone;
+        $this->father_nationality_id = $myParent->father_nationality_id;
+        $this->father_blood_type_id = $myParent->father_blood_type_id;
+        $this->father_religion_id = $myParent->father_religion_id;
+        $this->father_address = $myParent->father_address;
+
+        $this->mother_name_ar = $myParent->getTranslation('mother_name', 'ar');
+        $this->mother_name_en = $myParent->getTranslation('mother_name', 'en');
+        $this->mother_job_ar = $myParent->getTranslation('mother_job', 'ar');
+        $this->mother_job_en = $myParent->getTranslation('mother_job', 'en');
+        $this->mother_national_id = $myParent->mother_national_id;
+        $this->mother_passport_id = $myParent->mother_passport_id;
+        $this->mother_phone = $myParent->mother_phone;
+        $this->mother_nationality_id = $myParent->mother_nationality_id;
+        $this->mother_blood_type_id = $myParent->mother_blood_type_id;
+        $this->mother_religion_id = $myParent->mother_religion_id;
+        $this->mother_address = $myParent->mother_address;
+    }
+
+    public function firstStepEdit(){
+        $this->validate([
+            'email' => 'required|email|unique:my_parents,email,'.$this->parent_id,
+            'password' => 'required|min:8|max:255',
+            'father_name_ar' => 'required|string|min:3|max:255',
+            'father_name_en' => 'required|string|min:3|max:255',
+            'father_job_ar' => 'required|string|min:3|max:255',
+            'father_job_en' => 'required|string|min:3|max:255',
+            'father_national_id' => 'required|unique:my_parents,father_national_id,' . $this->parent_id,
+            'father_passport_id' => 'required|unique:my_parents,father_passport_id,' . $this->parent_id,
+            'father_phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'father_nationality_id' => 'required|exists:nationalities,id',
+            'father_blood_type_id' => 'required|exists:blood__types,id',
+            'father_religion_id' => 'required|exists:religions,id',
+            'father_address' => 'required|string|min:3|max:255',
+        ]);
+
+        $this->updateMode = true;
+        $this->currentStep = 2;
+    }
+
+    public function secondStepEdit(){
+        $this->validate([
+            'mother_name_ar' => 'required|string|min:3|max:255',
+            'mother_name_en' => 'required|string|min:3|max:255',
+            'mother_job_ar' => 'required|string|min:3|max:255',
+            'mother_job_en' => 'required|string|min:3|max:255',
+            'mother_national_id' => 'required|unique:my_parents,mother_national_id,' . $this->parent_id,
+            'mother_passport_id' => 'required|unique:my_parents,mother_passport_id,' . $this->parent_id,
+            'mother_phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'mother_nationality_id' => 'required|exists:nationalities,id',
+            'mother_blood_type_id' => 'required|exists:blood__types,id',
+            'mother_religion_id' => 'required|exists:religions,id',
+            'mother_address' => 'required|string|min:3|max:255',
+        ]);
+
+        $this->updateMode = true;
+        $this->currentStep = 3;
+    }
+
+    public function editForm(){
+        try {
+            $myParent = MyParent::findOrFail($this->parent_id);
+
+            $myParent->email = $this->email;
+
+            // Father Info
+            $myParent->father_name = ['en' => $this->father_name_en , 'ar' => $this->father_name_ar];
+            $myParent->father_job = ['en' => $this->father_job_en , 'ar' => $this->father_job_ar];
+            $myParent->father_national_id = $this->father_national_id;
+            $myParent->father_passport_id = $this->father_passport_id;
+            $myParent->father_phone = $this->father_phone;
+            $myParent->father_nationality_id = $this->father_nationality_id;
+            $myParent->father_blood_type_id = $this->father_blood_type_id;
+            $myParent->father_religion_id = $this->father_religion_id;
+            $myParent->father_address = $this->father_address;
+
+            // Mother Info
+            $myParent->mother_name = ['en' => $this->mother_name_en , 'ar' => $this->mother_name_ar];
+            $myParent->mother_job = ['en' => $this->mother_job_en , 'ar' => $this->mother_job_ar];
+            $myParent->mother_national_id = $this->mother_national_id;
+            $myParent->mother_passport_id = $this->mother_passport_id;
+            $myParent->mother_phone = $this->mother_phone;
+            $myParent->mother_nationality_id = $this->mother_nationality_id;
+            $myParent->mother_blood_type_id = $this->mother_blood_type_id;
+            $myParent->mother_religion_id = $this->mother_religion_id;
+            $myParent->mother_address = $this->mother_address;
+
+            $myParent->save();
+
+            if (!empty($this->photos)) {
+                foreach ($this->photos as $photo) {
+                    $photo->storeAs($myParent->id, $photo->getClientOriginalName(), $disk = 'parent_attachments');
+                    ParentAttachment::create([
+                        'file_name' => $photo->getClientOriginalName(),
+                        'parent_id' => $myParent->id,
+                    ]);
+                }
+            }
+            
+            return redirect()->route('parents');
+        } catch (\Exception $e) {
+            $this->catchError = $e->getMessage();
+        }
+    }
+
+    public function delete($id){
+        try{
+            $myParent = MyParent::findOrFail($id);
+
+            // delete photos from server
+            Storage::deleteDirectory('parent_attachments/'.$myParent->id);
+
+            // delete parent data
+            $myParent->delete();
+
+            // redirect back
+            return redirect()->route('parents');
+
+        } catch (\Exception $e) {
+            $this->catchError = $e->getMessage();
+        }
     }
 }

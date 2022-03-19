@@ -37,6 +37,6 @@ Route::group(
         Route::resource('classrooms',ClassroomController::class)->except(['create','show','edit']);
         Route::resource('sections',SectionController::class)->except(['create','show','edit']);
         Route::post('/sections/getClassrooms/{id}',[SectionController::class,'getClassrooms'])->name('getClassrooms');
-        Route::view('/parents','livewire.parents.show_form')->name('parents.create');
+        Route::view('/parents','livewire.parents.show_form')->name('parents');
     }
 );

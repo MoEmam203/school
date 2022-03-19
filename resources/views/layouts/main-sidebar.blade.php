@@ -57,8 +57,7 @@
                             <div class="clearfix"></div>
                         </a>
                         <ul id="parents" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="#">{{ __('mainside.parentsList') }}</a> </li>
-                            <li> <a href="{{ route('parents.create') }}">{{ __('mainside.parentsCreate') }}</a> </li>
+                            <li> <a href="{{ route('parents') }}">{{ __('mainside.parentsList') }}</a> </li>
                         </ul>
                     </li>
                 </ul>
