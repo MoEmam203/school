@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\SectionController;
+use App\Http\Controllers\TeacherController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,13 +31,25 @@ Route::group(
         'prefix' => LaravelLocalization::setLocale(),
         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath','auth']
     ], function(){
+        // Dashboard
         Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard');
+
+        // Grades
         Route::resource('grades',GradeController::class)->except(['create','show','edit']);
+
+        // Classrooms
         Route::post('/deleteAll',[ClassroomController::class,'deleteAll'])->name('classrooms.deleteAll');
         Route::post('/classrooms/filter',[ClassroomController::class,'filter'])->name('classrooms.filter');
         Route::resource('classrooms',ClassroomController::class)->except(['create','show','edit']);
+
+        // Sections
         Route::resource('sections',SectionController::class)->except(['create','show','edit']);
         Route::post('/sections/getClassrooms/{id}',[SectionController::class,'getClassrooms'])->name('getClassrooms');
+
+        // Parents
         Route::view('/parents','livewire.parents.show_form')->name('parents');
+
+        // Teachers
+        Route::resource('teachers',TeacherController::class);
     }
 );

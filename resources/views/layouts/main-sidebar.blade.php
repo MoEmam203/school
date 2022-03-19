@@ -12,6 +12,7 @@
                             <div class="clearfix"></div>
                         </a>
                     </li>
+
                     <!--Grades-->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#grades">
@@ -24,6 +25,7 @@
                             <li><a href="{{ route('grades.index') }}">{{ __('mainside.Grades List') }}</a></li>
                         </ul>
                     </li>
+
                     <!-- Classrooms -->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#classrooms">
@@ -36,6 +38,7 @@
                             <li> <a href="{{ route('classrooms.index') }}">{{ __('mainside.classroomsList') }}</a> </li>
                         </ul>
                     </li>
+
                     <!-- Sections -->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#sections">
@@ -48,6 +51,7 @@
                             <li> <a href="{{ route('sections.index') }}">{{ __('mainside.sectionsList') }}</a> </li>
                         </ul>
                     </li>
+
                     <!-- Parents -->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#parents">
@@ -60,6 +64,20 @@
                             <li> <a href="{{ route('parents') }}">{{ __('mainside.parentsList') }}</a> </li>
                         </ul>
                     </li>
+
+                    <!-- Teachers -->
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#teachers">
+                            <div class="pull-left"><i class="ti-files"></i><span
+                                    class="right-nav-text">{{ __('mainside.teachers') }}</span></div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="teachers" class="collapse" data-parent="#sidebarnav">
+                            <li> <a href="{{ route('teachers.index') }}">{{ __('mainside.teachersList') }}</a> </li>
+                        </ul>
+                    </li>
+
                 </ul>
             </div>
         </div>

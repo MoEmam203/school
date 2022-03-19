@@ -10,5 +10,7 @@ return [
     'sectionsList' => 'Sections List',
     'parents' => 'Parents',
     'parentsList' => 'Parents List',
-    'parentsCreate' => 'Add Parent'
+    'parentsCreate' => 'Add Parent',
+    'teachers' => 'Teachers',
+    'teachersList' => 'Teachers List'
 ];

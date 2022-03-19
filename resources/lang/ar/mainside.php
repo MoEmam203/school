@@ -10,5 +10,7 @@ return [
     'sectionsList' => 'قائمة الاقسام',
     'parents' => 'اوليا الامور',
     'parentsList' => 'قائمة اولياء الامور',
-    'parentsCreate' => 'اضافة ولي امر'
+    'parentsCreate' => 'اضافة ولي امر',
+    'teachers' => 'المعلمين',
+    'teachersList' => 'قائمة المعلمين'
 ];
