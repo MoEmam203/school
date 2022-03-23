@@ -31,23 +31,18 @@ class TeacherController extends Controller
         return $this->teacher->store($request);
     }
 
-    public function show(Teacher $teacher)
-    {
-        //
-    }
-
     public function edit(Teacher $teacher)
     {
-        //
+        return $this->teacher->edit($teacher);
     }
 
-    public function update(Request $request, Teacher $teacher)
+    public function update(TeacherRequest $request, Teacher $teacher)
     {
-        //
+        return $this->teacher->update($request,$teacher);
     }
 
     public function destroy(Teacher $teacher)
     {
-        //
+        return $this->teacher->delete($teacher);
     }
 }

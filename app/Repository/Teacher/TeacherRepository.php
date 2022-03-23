@@ -48,6 +48,49 @@ class TeacherRepository implements TeacherRepositoryInterface{
         }
     }
 
+    // Edit teacher
+    public function edit($teacher)
+    {
+        $specializations = $this->getAllSpecializations();
+        $genders = $this->getAllGenders();
+        return view('teachers.edit',[
+            'specializations' => $specializations,
+            'genders' => $genders,
+            'teacher' => $teacher
+        ]);
+    }
+
+    // update teacher
+    public function update($request, $teacher)
+    {
+        try{
+            $teacher->update([
+                'email' => $request->email,
+                'name' => ['en' => $request->name_en , 'ar' => $request->name_ar],
+                'specialization_id' => $request->specialization_id,
+                'gender_id' => $request->gender_id,
+                'joining_date' => $request->joining_date,
+                'address' => $request->address
+            ]);
+
+            return redirect()->back()->withSuccess(__('messages.update'));
+        }catch(\Exception $e){
+            dd($e->getMessage());
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
+
+    // Delete teacher
+    public function delete($teacher)
+    {
+        try{
+            $teacher->delete();
+            return redirect()->back()->withError(__('messages.delete'));
+        }catch(\Exception $e){
+            return redirect()->back()->withErrors(['error'=> $e->getMessage()]);
+        }
+    }
+
     // get all teachers from DB
     public function getAllTeachers(){
         return Teacher::all();

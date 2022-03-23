@@ -23,15 +23,33 @@ class TeacherRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'email' => 'required|email|unique:teachers,email,except,'.$this->id,
-            'password' => 'required|min:8|max:255',
-            'name_ar' => 'required|string|min:3|max:255',
-            'name_en' => 'required|string|min:3|max:255',
-            'joining_date' => 'required|date',
-            'address' => 'required|min:3',
-            'specialization_id' => 'required|exists:specializations,id',
-            'gender_id' => 'required|exists:genders,id'
-        ];
+        switch(request()->method){
+            case 'POST':
+                return [
+                    'email' => 'required|email|unique:teachers,email',
+                    'password' => 'required|min:8|max:255',
+                    'name_ar' => 'required|string|min:3|max:255',
+                    'name_en' => 'required|string|min:3|max:255',
+                    'joining_date' => 'required|date',
+                    'address' => 'required|min:3',
+                    'specialization_id' => 'required|exists:specializations,id',
+                    'gender_id' => 'required|exists:genders,id'
+                ];
+                break;
+            
+            case 'PUT':
+            case 'PATCH':
+                return [
+                    'email' => 'required|email|unique:teachers,email,'.$this->teacher->id,
+                    'name_ar' => 'required|string|min:3|max:255',
+                    'name_en' => 'required|string|min:3|max:255',
+                    'joining_date' => 'required|date',
+                    'address' => 'required|min:3',
+                    'specialization_id' => 'required|exists:specializations,id',
+                    'gender_id' => 'required|exists:genders,id'
+                ];
+                break;
+
+        }
     }
 }

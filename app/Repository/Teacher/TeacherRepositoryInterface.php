@@ -12,6 +12,15 @@ interface TeacherRepositoryInterface{
 
     // store new teacher in DB
     public function store($request);
+
+    // Edit teacher
+    public function edit($teacher);
+
+    // Update teacher
+    public function update($request,$teacher);
+
+    // Delete Teacher
+    public function delete($teacher);
     
     // get all teachers from DB
     public function getAllTeachers();

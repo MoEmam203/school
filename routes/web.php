@@ -50,6 +50,6 @@ Route::group(
         Route::view('/parents','livewire.parents.show_form')->name('parents');
 
         // Teachers
-        Route::resource('teachers',TeacherController::class);
+        Route::resource('teachers',TeacherController::class)->except('show');
     }
 );
