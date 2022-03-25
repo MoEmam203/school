@@ -69,14 +69,13 @@
                                                                 class="fa fa-trash"></i></button>
                                                     </td>
                                                 </tr>
-
                                                 <!-- edit_modal_Section -->
                                                 <div class="modal fade" id="edit{{ $section->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h5 style="font-family: 'Cairo', sans-serif;" class="modal-title" id="exampleModalLabel">
-                                                                    {{ __('Sections_trans.edit_Grade') }}
+                                                                    {{ __('Sections_trans.edit_section') }}
                                                                 </h5>
                                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                     <span aria-hidden="true">&times;</span>
@@ -132,6 +131,17 @@
                                                                         <label class="form-check-label" for="status">
                                                                             {{ __('Sections_trans.Status') }}
                                                                         </label>
+                                                                    </div>
+
+                                                                    <div class="form-group">
+                                                                        <label for="teacher_id">
+                                                                            {{ __('Sections_trans.teachers') }}:
+                                                                        </label>
+                                                                        <select name="teachers_id[]" id="teachers_id" class="form-control" multiple>
+                                                                            @foreach ($teachers as $teacher)
+                                                                                <option value="{{ $teacher->id }}" {{ in_array($teacher->id,$section->teachers()->pluck('teacher_id')->toArray()) ? 'selected':''}}>{{ $teacher->name }}</option>
+                                                                            @endforeach
+                                                                        </select>
                                                                     </div>
                                                                     <br><br>
                                                 

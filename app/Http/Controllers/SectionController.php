@@ -103,6 +103,13 @@ class SectionController extends Controller
                 'status' => $request->status ?? 0
             ]);
 
+            // update pivot table
+            if(isset($request->teachers_id)){
+                $section->teachers()->sync($request->teachers_id);
+            }else{
+                $section->teachers()->sync(array());
+            }
+
             return redirect()->back()->withSuccess(__('messages.update'));
 
         }catch(\Exception $e){
