@@ -6,6 +6,7 @@ use App\Http\Requests\SectionRequest;
 use App\Models\Classroom;
 use App\Models\Grade;
 use App\Models\Section;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 
 class SectionController extends Controller
@@ -19,7 +20,12 @@ class SectionController extends Controller
     {
         $grades = Grade::with(['sections','classrooms'])->get();
 
-        return view('sections.index',['grades'=>$grades]);
+        $teachers = Teacher::all();
+
+        return view('sections.index',[
+            'grades'=>$grades,
+            'teachers' => $teachers
+        ]);
     }
 
     /**
@@ -40,13 +46,16 @@ class SectionController extends Controller
      */
     public function store(SectionRequest $request)
     {
+        // return $request;
         try{
             // save Section into db
-            Section::create([
+            $section = Section::create([
                 'name' => ['en'=>$request->name_en,'ar'=>$request->name_ar],
                 'grade_id' => $request->grade_id,
                 'classroom_id' => $request->classroom_id
             ]);
+
+            $section->teachers()->attach($request->teachers_id);
 
             return redirect()->back()->withSuccess(__('messages.success'));
 

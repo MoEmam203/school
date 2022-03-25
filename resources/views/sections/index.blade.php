@@ -241,6 +241,17 @@
                                 
                             </select>
                         </div>
+
+                        <div class="form-group">
+                            <label for="teacher_id">
+                                {{ __('Sections_trans.teachers') }}:
+                            </label>
+                            <select name="teachers_id[]" id="teachers_id" class="form-control" multiple>
+                                @foreach ($teachers as $teacher)
+                                    <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <br><br>
                 </div>
                 <div class="modal-footer">

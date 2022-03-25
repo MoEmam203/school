@@ -13,4 +13,8 @@ class Teacher extends Model
     protected $table = 'teachers';
     public $translatable = ['name'];
     protected $guarded = [];
+
+    public function sections(){
+        return $this->belongsToMany(Section::class);
+    }
 }

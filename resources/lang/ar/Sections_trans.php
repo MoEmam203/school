@@ -14,5 +14,6 @@ return [
     'active' => 'نشط',
     'inActive' => 'غير نشط',
     'delete_Section' => 'حذف القسم',
-    'Warning_Section' => 'هل انت متاكد من حذف القسم ؟'
+    'Warning_Section' => 'هل انت متاكد من حذف القسم ؟',
+    'teachers' => 'المعلمين'
 ];

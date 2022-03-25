@@ -23,4 +23,8 @@ class Section extends Model
     public function classrooms(){
         return $this->belongsTo(Classroom::class,'classroom_id');
     }
+
+    public function teachers(){
+        return $this->belongsToMany(Teacher::class);
+    }
 }
