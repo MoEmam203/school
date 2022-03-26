@@ -12,5 +12,8 @@ return [
     'parentsList' => 'Parents List',
     'parentsCreate' => 'Add Parent',
     'teachers' => 'Teachers',
-    'teachersList' => 'Teachers List'
+    'teachersList' => 'Teachers List',
+    'students' => 'Students',
+    'studentsList' => 'Students List',
+    'add_student' => 'Add new student'
 ];

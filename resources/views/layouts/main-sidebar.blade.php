@@ -78,6 +78,20 @@
                         </ul>
                     </li>
 
+                    <!-- Students -->
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#students">
+                            <div class="pull-left"><i class="ti-id-badge"></i><span
+                                    class="right-nav-text">{{ __('mainside.students') }}</span></div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="students" class="collapse" data-parent="#sidebarnav">
+                            <li> <a href="{{ route('students.index') }}">{{ __('mainside.studentsList') }}</a> </li>
+                            <li> <a href="{{ route('students.create') }}">{{ __('mainside.add_student') }}</a> </li>
+                        </ul>
+                    </li>
+
                 </ul>
             </div>
         </div>

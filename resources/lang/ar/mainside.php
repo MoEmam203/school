@@ -12,5 +12,8 @@ return [
     'parentsList' => 'قائمة اولياء الامور',
     'parentsCreate' => 'اضافة ولي امر',
     'teachers' => 'المعلمين',
-    'teachersList' => 'قائمة المعلمين'
+    'teachersList' => 'قائمة المعلمين',
+    'students' => 'الطلاب',
+    'studentsList' => 'قائمة الطلاب',
+    'add_student' => 'اضافة طالب جديد'
 ];
