@@ -16,5 +16,9 @@ return [
     'section' => 'القسم',
     'parent' => 'ولي الامر',
     'academic_year' => 'السنة الدراسية',
-    'Choose' => 'اختر'
+    'Choose' => 'اختر',
+    'name' => 'الاسم',
+    'delete_Student' => 'حذف الطالب',
+    'Warning_Student' => 'هل انت متاكد من حذف بيانات هذا الطالب ؟',
+    'edit_Student' => 'تعديل بيانات الطالب'
 ];

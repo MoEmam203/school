@@ -14,6 +14,14 @@ use Illuminate\Support\Facades\Hash;
 
 class StudentRepository implements StudentRepositoryInterface{
 
+    // show all student
+    public function index(){
+        $students = Student::all();
+        return view('students.index',[
+            'students' => $students
+        ]);
+    }
+
     // create student
     public function create()
     {
@@ -51,6 +59,58 @@ class StudentRepository implements StudentRepositoryInterface{
             ]);
 
             return redirect()->back()->withSuccess(__('messages.success'));
+        }catch(\Exception $e){
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
+
+    // Edit Student
+    public function edit($student){
+        $genders = $this->getAllGenders();
+        $nationalities = $this->getAllNationalities();
+        $blood_types = $this->getAllBloodTypes();
+        $grades = $this->getAllGrades();
+        $parents = $this->getAllParents();
+
+        return view('students.edit',[
+            'genders' => $genders,
+            'nationalities' => $nationalities,
+            'blood_types' => $blood_types,
+            'grades' => $grades,
+            'parents' => $parents,
+            'student' => $student
+        ]);
+    }
+
+    // update Student
+    public function update($request,$student){
+        try{
+            $student->update([
+                'name' => ['en' => $request->name_en , 'ar' => $request->name_ar],
+                'email' => $request->email,
+                'date_of_birth' => $request->date_of_birth,
+                'academic_year' => $request->academic_year,
+
+                'gender_id' => $request->gender_id,
+                'nationality_id' => $request->nationality_id,
+                'blood_type_id' => $request->blood_type_id,
+                'grade_id' => $request->grade_id,
+                'classroom_id' => $request->classroom_id,
+                'section_id' => $request->section_id,
+                'parent_id' => $request->parent_id,
+            ]);
+
+            return redirect()->back()->withSuccess(__('messages.update'));
+        }catch(\Exception $e){
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
+
+    // delete Student
+    public function destroy($student){
+        try{
+            $student->delete();
+            return redirect()->back()->withError(__('messages.delete'));
         }catch(\Exception $e){
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }

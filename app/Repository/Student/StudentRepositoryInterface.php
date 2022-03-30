@@ -4,11 +4,23 @@ namespace App\Repository\Student;
 
 interface StudentRepositoryInterface{
 
+    // show all student
+    public function index();
+
     // create new student
     public function create();
 
     // store new student
     public function store($request);
+
+    // Edit Student
+    public function edit($student);
+
+    // update Student
+    public function update($request,$student);
+
+    // delete Student
+    public function destroy($student);
 
     // get all genders
     public function getAllGenders();

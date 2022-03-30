@@ -17,7 +17,7 @@ class StudentController extends Controller
     
     public function index()
     {
-        //
+        return $this->student->index();
     }
 
     
@@ -41,18 +41,18 @@ class StudentController extends Controller
 
     public function edit(Student $student)
     {
-        //
+        return $this->student->edit($student);
     }
 
     
-    public function update(Request $request, Student $student)
+    public function update(StudentRequest $request, Student $student)
     {
-        //
+        return $this->student->update($request,$student);
     }
 
     public function destroy(Student $student)
     {
-        //
+        return $this->student->destroy($student);
     }
 
     // get Classrooms by grade id

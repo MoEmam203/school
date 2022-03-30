@@ -16,5 +16,9 @@ return [
     'section' => 'Section',
     'parent' => 'Parent',
     'academic_year' => 'Academic year',
-    'Choose' => 'Choose'
+    'Choose' => 'Choose',
+    'name' => 'Name',
+    'delete_Student' => 'Delete Student',
+    'Warning_Student' => 'Are you sure you want to delete this teacher ?',
+    'edit_Student' => 'Edit Student'
 ];

@@ -28,6 +28,7 @@
     <div class="col-md-12 mb-30">
         <div class="card card-statistics h-100">
             <div class="card-body">
+                @include('errors')
                 <h5 class="card-title">{{ __('mainside.teachersList') }}</h5>
                 <a class="btn btn-sm btn-success mb-3" href="{{ route('teachers.create') }}">
                     {{ __('Teachers_trans.addTeacher') }}

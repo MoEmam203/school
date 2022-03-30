@@ -47,7 +47,7 @@ class StudentRequest extends FormRequest
             case 'PATCH':
                 return [
                     'email' => 'required|email|unique:students,email,'.$this->student->id,
-                    'password' => 'required|min:8|max:255',
+                    // 'password' => 'required|min:8|max:255',
                     'name_ar' => 'required|string|min:3|max:255',
                     'name_en' => 'required|string|min:3|max:255',
                     'date_of_birth' => 'required|string',
