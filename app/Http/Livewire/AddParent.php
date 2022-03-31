@@ -7,8 +7,9 @@ use App\Models\MyParent;
 use App\Models\Religion;
 use App\Models\Blood_Type;
 use App\Models\Nationality;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Livewire\WithFileUploads;
-use App\Models\ParentAttachment;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
@@ -96,6 +97,7 @@ class AddParent extends Component
     }
 
     public function submitForm(){
+        DB::beginTransaction();
         try{
             $myParent = new MyParent();
 
@@ -127,19 +129,19 @@ class AddParent extends Component
 
             if (!empty($this->photos)){
                 foreach ($this->photos as $photo) {
-                    $photo->storeAs($myParent->id, $photo->getClientOriginalName(), $disk = 'parent_attachments');
-                    ParentAttachment::create([
-                        'file_name' => $photo->getClientOriginalName(),
-                        'parent_id' => $myParent->id,
+                    $myParent->images()->create([
+                        'filename' => $photo->getClientOriginalName()
                     ]);
+                    $photo->storeAs('attachments/parents/'.$myParent->id, $photo->getClientOriginalName(),'upload_attachments');
                 }
             }
-            
+            DB::commit();
             $this->successMessage = __('messages.success');
             $this->clearForm();
             $this->currentStep = 1;
 
         }catch(\Exception $e){
+            DB::rollBack();
             $this->catchError = $e->getMessage();
         }
     }
@@ -258,6 +260,7 @@ class AddParent extends Component
     }
 
     public function editForm(){
+        DB::beginTransaction();
         try {
             $myParent = MyParent::findOrFail($this->parent_id);
 
@@ -289,16 +292,16 @@ class AddParent extends Component
 
             if (!empty($this->photos)) {
                 foreach ($this->photos as $photo) {
-                    $photo->storeAs($myParent->id, $photo->getClientOriginalName(), $disk = 'parent_attachments');
-                    ParentAttachment::create([
-                        'file_name' => $photo->getClientOriginalName(),
-                        'parent_id' => $myParent->id,
+                    $myParent->images()->create([
+                        'filename' => $photo->getClientOriginalName()
                     ]);
+                    $photo->storeAs('attachments/parents/'.$myParent->id, $photo->getClientOriginalName(), 'upload_attachments');
                 }
             }
-            
+            DB::commit();
             return redirect()->route('parents');
         } catch (\Exception $e) {
+            DB::rollBack();
             $this->catchError = $e->getMessage();
         }
     }
@@ -308,7 +311,10 @@ class AddParent extends Component
             $myParent = MyParent::findOrFail($id);
 
             // delete photos from server
-            Storage::deleteDirectory('parent_attachments/'.$myParent->id);
+            File::deleteDirectory(public_path('attachments/parents/'.$myParent->id));
+
+            // delete image from DB
+            $myParent->images()->delete();
 
             // delete parent data
             $myParent->delete();

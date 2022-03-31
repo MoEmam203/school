@@ -11,6 +11,7 @@ use App\Models\Classroom;
 use App\Models\Blood_Type;
 use App\Models\Nationality;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 
 class StudentRepository implements StudentRepositoryInterface{
@@ -71,7 +72,7 @@ class StudentRepository implements StudentRepositoryInterface{
                     ]);
 
                     // store in server
-                    $image->storeAs('attachments/students/'.$student->name,$name,'upload_attachments');
+                    $image->storeAs('attachments/students/'.$student->id,$name,'upload_attachments');
                 }
             }
             DB::commit();
@@ -127,6 +128,13 @@ class StudentRepository implements StudentRepositoryInterface{
     // delete Student
     public function destroy($student){
         try{
+            // remove images from server
+            File::deleteDirectory(public_path('/attachments/students/'.$student->id));
+
+            // remove images form DB
+            $student->images()->delete();
+
+            // remove student
             $student->delete();
             return redirect()->back()->withError(__('messages.delete'));
         }catch(\Exception $e){

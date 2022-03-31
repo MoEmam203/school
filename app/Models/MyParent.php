@@ -14,7 +14,7 @@ class MyParent extends Model
     public $translatable = ['father_name','father_job','mother_name','mother_job'];
     protected $guarded = [];
 
-    public function attachments(){
-        return $this->hasMany(ParentAttachment::class,'parent_id','id');
-    } 
+    public function images(){
+        return $this->morphMany(Image::class,'imageable');
+    }
 }
