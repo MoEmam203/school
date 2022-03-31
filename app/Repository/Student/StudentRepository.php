@@ -2,14 +2,15 @@
 
 namespace App\Repository\Student;
 
-use App\Models\Blood_Type;
-use App\Models\Classroom;
-use App\Models\Gender;
 use App\Models\Grade;
-use App\Models\MyParent;
-use App\Models\Nationality;
+use App\Models\Gender;
 use App\Models\Section;
 use App\Models\Student;
+use App\Models\MyParent;
+use App\Models\Classroom;
+use App\Models\Blood_Type;
+use App\Models\Nationality;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class StudentRepository implements StudentRepositoryInterface{
@@ -41,8 +42,9 @@ class StudentRepository implements StudentRepositoryInterface{
 
     // store new student
     public function store($request){
+        DB::beginTransaction();
         try{
-            Student::create([
+            $student = Student::create([
                 'name' => ['en' => $request->name_en , 'ar' => $request->name_ar],
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
@@ -58,8 +60,24 @@ class StudentRepository implements StudentRepositoryInterface{
                 'parent_id' => $request->parent_id,
             ]);
 
+            // if request has images
+            if($request->hasFile('images')){
+                foreach($request->file('images') as $image){
+                    $name = $image->getClientOriginalName();
+
+                    // store in DB
+                    $student->images()->create([
+                        'filename' => $name
+                    ]);
+
+                    // store in server
+                    $image->storeAs('attachments/students/'.$student->name,$name,'upload_attachments');
+                }
+            }
+            DB::commit();
             return redirect()->back()->withSuccess(__('messages.success'));
         }catch(\Exception $e){
+            DB::rollBack();
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }

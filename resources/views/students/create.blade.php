@@ -30,7 +30,7 @@
             <div class="card-body">
                 @include('errors')
 
-                <form method="post" action="{{ route('students.store') }}" autocomplete="off">
+                <form method="post" action="{{ route('students.store') }}" autocomplete="off" enctype="multipart/form-data">
                     @csrf
                     <h6 style="font-family: 'Cairo', sans-serif;color: blue">{{__('Students_trans.personal_information')}}</h6><br>
                     <div class="row">
@@ -167,7 +167,16 @@
                                 </select>
                             </div>
                         </div>
-                    </div><br>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="images">{{ __('Students_trans.Attachments') }}</label>
+                            <input type="file" accept="image/*" name="images[]" multiple>
+                        </div>
+                    </div>
+                    
+                    <br>
                     <button class="btn btn-success m-2" type="submit">{{__('general.Submit')}}</button>
                 </form>
             </div>

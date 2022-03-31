@@ -20,5 +20,6 @@ return [
     'name' => 'Name',
     'delete_Student' => 'Delete Student',
     'Warning_Student' => 'Are you sure you want to delete this teacher ?',
-    'edit_Student' => 'Edit Student'
+    'edit_Student' => 'Edit Student',
+    'Attachments' => 'Attachments'
 ];

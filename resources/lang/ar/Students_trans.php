@@ -20,5 +20,6 @@ return [
     'name' => 'الاسم',
     'delete_Student' => 'حذف الطالب',
     'Warning_Student' => 'هل انت متاكد من حذف بيانات هذا الطالب ؟',
-    'edit_Student' => 'تعديل بيانات الطالب'
+    'edit_Student' => 'تعديل بيانات الطالب',
+    'Attachments' => 'المرفقات'
 ];
