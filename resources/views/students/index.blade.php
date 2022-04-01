@@ -67,6 +67,8 @@
                                             data-target="#delete{{ $student->id }}"
                                             title="{{ __('general.Delete') }}"><i
                                             class="fa fa-trash"></i></button>
+
+                                        <a href="{{route('students.show',$student)}}" class="btn btn-warning btn-sm" role="button" aria-pressed="true"><i class="fa fa-eye"></i></a>
                                     </td>
                                 </tr>
 

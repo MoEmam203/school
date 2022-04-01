@@ -19,7 +19,14 @@ return [
     'Choose' => 'Choose',
     'name' => 'Name',
     'delete_Student' => 'Delete Student',
-    'Warning_Student' => 'Are you sure you want to delete this teacher ?',
+    'Warning_Student' => 'Are you sure you want to delete this student ?',
     'edit_Student' => 'Edit Student',
-    'Attachments' => 'Attachments'
+    'Attachments' => 'Attachments',
+    'Student_details' => 'Student Details',
+    'filename' => 'filename',
+    'created_at' => 'created at',
+    'Show' => 'Show',
+    'Download' => 'Download',
+    'delete_Attachment' => 'Delete Attachment',
+    'Warning_Image' => 'Are you sure you want to delete this image ?'
 ];

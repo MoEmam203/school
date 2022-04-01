@@ -21,5 +21,12 @@ return [
     'delete_Student' => 'حذف الطالب',
     'Warning_Student' => 'هل انت متاكد من حذف بيانات هذا الطالب ؟',
     'edit_Student' => 'تعديل بيانات الطالب',
-    'Attachments' => 'المرفقات'
+    'Attachments' => 'المرفقات',
+    'Student_details' => 'بيانات الطالب',
+    'filename' => 'اسم الملف',
+    'created_at' => 'تاريخ الانشاء',
+    'Show' => 'عرض',
+    'Download' => 'تحميل',
+    'delete_Attachment' => 'حذف المرفق',
+    'Warning_Image' => 'هل انت متاكد من حذف هذا المرفق ؟'
 ];

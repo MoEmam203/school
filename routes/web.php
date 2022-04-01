@@ -54,8 +54,12 @@ Route::group(
         Route::resource('teachers',TeacherController::class)->except('show');
 
         // Students
-        Route::resource('students',StudentController::class)->except('show');
+        Route::resource('students',StudentController::class);
         Route::post('/student/getClassrooms/{id}',[StudentController::class,'getClassrooms']);
         Route::post('/student/getSections/{id}',[StudentController::class,'getSections']);
+        Route::post('/student/uploadAttachments/{student}',[StudentController::class,'uploadAttachments'])->name('uploadAttachment');
+        Route::get('/student/showAttachment/{student}/{filename}',[StudentController::class,'showAttachment'])->name('showAttachment');
+        Route::get('/student/downloadAttachment/{student}/{filename}',[StudentController::class,'downloadAttachment'])->name('downloadAttachment');
+        Route::delete('/student/deleteAttachment/{student}/{image}',[StudentController::class,'deleteAttachment'])->name('deleteAttachment');
     }
 );

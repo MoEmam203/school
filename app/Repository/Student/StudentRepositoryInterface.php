@@ -13,6 +13,9 @@ interface StudentRepositoryInterface{
     // store new student
     public function store($request);
 
+    // show student data
+    public function show($student);
+
     // Edit Student
     public function edit($student);
 
@@ -21,6 +24,18 @@ interface StudentRepositoryInterface{
 
     // delete Student
     public function destroy($student);
+
+    // upload attachments
+    public function uploadAttachments($request,$student);
+
+    // Download Attachment
+    public function downloadAttachment($student,$filename);
+
+    // Show Attachment
+    public function showAttachment($student,$filename);
+
+    // Delete Attachment
+    public function deleteAttachment($student,$image);
 
     // get all genders
     public function getAllGenders();

@@ -83,6 +83,12 @@ class StudentRepository implements StudentRepositoryInterface{
         }
     }
 
+    // show student data
+    public function show($student)
+    {
+        return view('students.show',['student' => $student]);
+    }
+
     // Edit Student
     public function edit($student){
         $genders = $this->getAllGenders();
@@ -138,6 +144,59 @@ class StudentRepository implements StudentRepositoryInterface{
             $student->delete();
             return redirect()->back()->withError(__('messages.delete'));
         }catch(\Exception $e){
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
+
+    // upload attachments
+    public function uploadAttachments($request,$student){
+        try{
+            // if request has images
+            if ($request->hasFile('images')) {
+                foreach ($request->file('images') as $image) {
+                    $name = $image->getClientOriginalName();
+
+                    // store in DB
+                    $student->images()->create([
+                        'filename' => $name
+                    ]);
+
+                    // store in server
+                    $image->storeAs('attachments/students/'.$student->id, $name, 'upload_attachments');
+                }
+            }
+            return redirect()->back()->withSuccess(__('messages.success'));
+        }catch(\Exception $e){
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
+
+    // Show attachment
+    public function showAttachment($student,$filename){
+        return response()->file(public_path('attachments/students/'.$student->id.'/'.$filename));
+    }
+
+    // Download Attachment
+    public function downloadAttachment($student,$filename){
+        return response()->download(public_path('attachments/students/'.$student->id.'/'.$filename));
+    }
+
+    // Delete Attachment
+    public function deleteAttachment($student,$image){
+        DB::beginTransaction();
+        try{
+            // delete from server
+            File::delete(public_path('attachments/students/'.$student->id.'/'.$image->filename));
+
+            // delete from DB
+            $image->delete();
+
+            // return back
+            DB::commit();
+            return redirect()->back()->withError(__('messages.delete'));
+        }catch(\Exception $e){
+            DB::rollBack();
+            return $e->getMessage();
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
