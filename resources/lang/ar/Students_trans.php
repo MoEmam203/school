@@ -28,5 +28,7 @@ return [
     'Show' => 'عرض',
     'Download' => 'تحميل',
     'delete_Attachment' => 'حذف المرفق',
-    'Warning_Image' => 'هل انت متاكد من حذف هذا المرفق ؟'
+    'Warning_Image' => 'هل انت متاكد من حذف هذا المرفق ؟',
+    'promotion_from' => 'الترقية من',
+    'promotion_to' => 'الترقية الي',
 ];

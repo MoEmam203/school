@@ -15,5 +15,6 @@ return [
     'teachersList' => 'قائمة المعلمين',
     'students' => 'الطلاب',
     'studentsList' => 'قائمة الطلاب',
-    'add_student' => 'اضافة طالب جديد'
+    'add_student' => 'اضافة طالب جديد',
+    'students_promotion' => 'ترقية الطلاب'
 ];

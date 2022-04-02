@@ -28,5 +28,7 @@ return [
     'Show' => 'Show',
     'Download' => 'Download',
     'delete_Attachment' => 'Delete Attachment',
-    'Warning_Image' => 'Are you sure you want to delete this image ?'
+    'Warning_Image' => 'Are you sure you want to delete this image ?',
+    'promotion_from' => 'Promotion from',
+    'promotion_to' => 'Promotion to',
 ];

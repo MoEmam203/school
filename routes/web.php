@@ -4,6 +4,7 @@ use App\Http\Controllers\ClassroomController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GradeController;
+use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
@@ -61,5 +62,7 @@ Route::group(
         Route::get('/student/showAttachment/{student}/{filename}',[StudentController::class,'showAttachment'])->name('showAttachment');
         Route::get('/student/downloadAttachment/{student}/{filename}',[StudentController::class,'downloadAttachment'])->name('downloadAttachment');
         Route::delete('/student/deleteAttachment/{student}/{image}',[StudentController::class,'deleteAttachment'])->name('deleteAttachment');
+        // promotion student
+        Route::resource('promotions',PromotionController::class);
     }
 );

@@ -15,5 +15,6 @@ return [
     'teachersList' => 'Teachers List',
     'students' => 'Students',
     'studentsList' => 'Students List',
-    'add_student' => 'Add new student'
+    'add_student' => 'Add new student',
+    'students_promotion' => 'Students promotion'
 ];

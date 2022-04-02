@@ -45,3 +45,101 @@
         }
     }
 </script>
+
+
+<script>
+    $('#grade_id').change(function(){
+        let grade_id = $(this).val();
+        if(grade_id){
+            $.ajax({
+                type : 'POST',
+                url : '{{ URL::to("/student/getClassrooms") }}/'+grade_id,
+                data : {
+                    '_token' : '{{ csrf_token() }}'
+                },
+                success: function(data){
+                    $('#classroom_id').empty();
+                    $('#section_id').empty();
+                    $('#classroom_id').append(`<option selected disabled>{{__('Students_trans.Choose')}}...</option>`)
+                    $.each(data,function(key,value){
+                        $('#classroom_id').append(`<option value="${key}">${value}</option>`)
+                    })
+                },
+                error : function(err){
+                    console.log(err)
+                }
+            })
+        }
+    })
+
+    $('#classroom_id').change(function(){
+        let classroom_id = $(this).val()
+        if(classroom_id){
+            $.ajax({
+                type : "POST",
+                url : '{{ URL::to("/student/getSections") }}/'+classroom_id,
+                data:{
+                    '_token' : '{{ csrf_token() }}'
+                },
+                success: function(data){
+                    $('#section_id').empty();
+                    $('#section_id').append(`<option selected disabled>{{__('Students_trans.Choose')}}...</option>`)
+                    $.each(data,function(key,value){
+                        $('#section_id').append(`<option value="${key}">${value}</option>`)
+                    })
+                },
+                error: function(err){
+                    console.log(err)
+                }
+            })
+        }
+    })
+
+
+    $('#grade_id_new').change(function(){
+        let grade_id_new = $(this).val();
+        if(grade_id_new){
+            $.ajax({
+                type : 'POST',
+                url : '{{ URL::to("/student/getClassrooms") }}/'+grade_id_new,
+                data : {
+                    '_token' : '{{ csrf_token() }}'
+                },
+                success: function(data){
+                    $('#classroom_id_new').empty();
+                    $('#section_id_new').empty();
+                    $('#classroom_id_new').append(`<option selected disabled>{{__('Students_trans.Choose')}}...</option>`)
+                    $.each(data,function(key,value){
+                        $('#classroom_id_new').append(`<option value="${key}">${value}</option>`)
+                    })
+                },
+                error : function(err){
+                    console.log(err)
+                }
+            })
+        }
+    })
+
+    $('#classroom_id_new').change(function(){
+        let classroom_id_new = $(this).val()
+        if(classroom_id_new){
+            $.ajax({
+                type : "POST",
+                url : '{{ URL::to("/student/getSections") }}/'+classroom_id_new,
+                data:{
+                    '_token' : '{{ csrf_token() }}'
+                },
+                success: function(data){
+                    $('#section_id_new').empty();
+                    $('#section_id_new').append(`<option selected disabled>{{__('Students_trans.Choose')}}...</option>`)
+                    $.each(data,function(key,value){
+                        $('#section_id_new').append(`<option value="${key}">${value}</option>`)
+                    })
+                },
+                error: function(err){
+                    console.log(err)
+                }
+            })
+        }
+    })
+</script>
