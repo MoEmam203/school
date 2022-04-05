@@ -89,7 +89,7 @@
                         <ul id="students" class="collapse" data-parent="#sidebarnav">
                             <li> <a href="{{ route('students.index') }}">{{ __('mainside.studentsList') }}</a> </li>
                             <li> <a href="{{ route('students.create') }}">{{ __('mainside.add_student') }}</a> </li>
-                            <li> <a href="{{ route('promotions.index') }}">{{ __('mainside.students_promotion') }}</a> </li>
+                            <li> <a href="{{ route('promotions.create') }}">{{ __('mainside.students_promotion') }}</a> </li>
                         </ul>
                     </li>
 

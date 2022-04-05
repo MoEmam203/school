@@ -27,10 +27,12 @@ class PromotionRequest extends FormRequest
             'grade_id' => 'required|exists:grades,id',
             'classroom_id' => 'required|exists:classrooms,id',
             'section_id' => 'required|exists:sections,id',
+            'academic_year_from' => 'required',
 
             'grade_id_new' => 'required|exists:grades,id',
             'classroom_id_new' => 'required|exists:classrooms,id',
-            'section_id_new' => 'required|exists:sections,id'
+            'section_id_new' => 'required|exists:sections,id',
+            'academic_year_to' => 'required',
         ];
     }
 }

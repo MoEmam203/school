@@ -18,13 +18,13 @@ class PromotionController extends Controller
 
     public function index()
     {
-        return $this->promotion->index();
+        
     }
 
 
     public function create()
     {
-        //
+        return $this->promotion->create();
     }
 
 

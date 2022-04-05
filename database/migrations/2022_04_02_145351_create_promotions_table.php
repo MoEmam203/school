@@ -20,10 +20,12 @@ class CreatePromotionsTable extends Migration
             $table->foreignId('grade_from')->references('id')->on('grades')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('classroom_from')->references('id')->on('classrooms')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('section_from')->references('id')->on('sections')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('academic_year_from');
 
             $table->foreignId('grade_to')->references('id')->on('grades')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('classroom_to')->references('id')->on('classrooms')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('section_to')->references('id')->on('sections')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('academic_year_to');
 
             $table->timestamps();
         });

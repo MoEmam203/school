@@ -60,6 +60,19 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="academic_year_from">{{__('Students_trans.academic_year')}} : <span class="text-danger">*</span> </label>
+                                <select class="custom-select mr-sm-2" name="academic_year_from">
+                                    <option selected disabled>{{__('Students_trans.Choose')}}...</option>
+                                    @php
+                                    $current_year = date("Y");
+                                    @endphp
+                                    @for($year=$current_year; $year<=$current_year +1 ;$year++) <option value="{{ $year}}">{{ $year }}</option>
+                                        @endfor
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     <hr>
                     <h5>{{ __('Students_trans.promotion_to') }}</h5>
@@ -91,8 +104,20 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="academic_year_to">{{__('Students_trans.academic_year')}} : <span class="text-danger">*</span> </label>
+                                <select class="custom-select mr-sm-2" name="academic_year_to">
+                                    <option selected disabled>{{__('Students_trans.Choose')}}...</option>
+                                    @php
+                                    $current_year = date("Y");
+                                    @endphp
+                                    @for($year=$current_year; $year<=$current_year +1 ;$year++) <option value="{{ $year}}">{{ $year }}</option>
+                                        @endfor
+                                </select>
+                            </div>
+                        </div>
                     </div>
-
                     <br>
                     <button class="btn btn-success m-2" type="submit">{{__('general.Submit')}}</button>
                 </form>
