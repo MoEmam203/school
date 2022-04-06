@@ -18,7 +18,7 @@ class PromotionController extends Controller
 
     public function index()
     {
-        
+        return $this->promotion->index();
     }
 
 
@@ -55,5 +55,9 @@ class PromotionController extends Controller
     public function destroy(Promotion $promotion)
     {
         //
+    }
+
+    public function rollbackAllPromotions(){
+        return $this->promotion->rollbackAllPromotions();
     }
 }

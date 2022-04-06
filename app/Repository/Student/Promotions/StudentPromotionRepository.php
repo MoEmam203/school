@@ -9,6 +9,13 @@ use Illuminate\Support\Facades\DB;
 
 class StudentPromotionRepository implements StudentPromotionRepositoryInterface{
 
+    // index
+    public function index()
+    {
+        $promotions = Promotion::all();
+        return view('students.promotions.index',['promotions' => $promotions]);
+    }
+
     // create
     public function create()
     {
@@ -52,6 +59,28 @@ class StudentPromotionRepository implements StudentPromotionRepositoryInterface{
                 ]);
             }
 
+            DB::commit();
+            return redirect()->back()->withSuccess(__('messages.success'));
+        }catch(\Exception $e){
+            DB::rollBack();
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
+
+    // rollback all promotions
+    public function rollbackAllPromotions(){
+        DB::beginTransaction();
+        try{
+            $promotions = Promotion::all();
+            foreach($promotions as $promotion){
+                $promotion->student->update([
+                    'grade_id' => $promotion->grade_from,
+                    'classroom_id' => $promotion->classroom_from,
+                    'section_id' => $promotion->section_from,
+                    'academic_year' => $promotion->academic_year_from,
+                ]);
+            }
+            Promotion::truncate();
             DB::commit();
             return redirect()->back()->withSuccess(__('messages.success'));
         }catch(\Exception $e){

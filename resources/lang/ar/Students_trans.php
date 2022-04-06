@@ -31,4 +31,15 @@ return [
     'Warning_Image' => 'هل انت متاكد من حذف هذا المرفق ؟',
     'promotion_from' => 'الترقية من',
     'promotion_to' => 'الترقية الي',
+    'management_promotion' => 'ادارة الترقيات',
+    'grade_from' => 'من المرحلة الدراسية',
+    'classroom_from' => 'من السنة الدراسية',
+    'section_from' => 'من الفصل الدراسي',
+    'academic_year_from' => 'من سنة',
+    'grade_to' => 'الي المرحلة الدراسية',
+    'classroom_to' => 'الي السنة الدراسية',
+    'section_to' => 'الي الفصل الدراسي',
+    'academic_year_to' => 'الي سنة',
+    'rollback_all_promotions' => 'تراجع كل الترقيات',
+    'Warning_All_Promotions' => 'هل انت متاكد من تراجع كل الترقيات ؟'
 ];

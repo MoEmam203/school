@@ -31,4 +31,15 @@ return [
     'Warning_Image' => 'Are you sure you want to delete this image ?',
     'promotion_from' => 'Promotion from',
     'promotion_to' => 'Promotion to',
+    'management_promotion' => 'Management Promotion',
+    'grade_from' => 'Grade from',
+    'classroom_from' => 'Classroom from',
+    'section_from' => 'Section from',
+    'academic_year_from' => 'Academic year from',
+    'grade_to' => 'Grade to',
+    'classroom_to' => 'Classroom to',
+    'section_to' => 'Section to',
+    'academic_year_to' => 'Academic year to',
+    'rollback_all_promotions' => 'Rollback all promotions',
+    'Warning_All_Promotions' => 'Are you sure you want to rollback all promotions ?'
 ];

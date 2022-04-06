@@ -64,5 +64,6 @@ Route::group(
         Route::delete('/student/deleteAttachment/{student}/{image}',[StudentController::class,'deleteAttachment'])->name('deleteAttachment');
         // promotion student
         Route::resource('promotions',PromotionController::class);
+        Route::delete('rollbackAllPromotions',[PromotionController::class,'rollbackAllPromotions'])->name('promotions.rollbackAllPromotions');
     }
 );
