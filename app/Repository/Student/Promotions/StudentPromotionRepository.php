@@ -67,6 +67,26 @@ class StudentPromotionRepository implements StudentPromotionRepositoryInterface{
         }
     }
 
+    // rollback one promotion
+    public function destroy($promotion){
+        DB::beginTransaction();
+        try{
+            $promotion->student->update([
+                'grade_id' => $promotion->grade_from,
+                'classroom_id' => $promotion->classroom_from,
+                'section_id' => $promotion->section_from,
+                'academic_year' => $promotion->academic_year_from,
+            ]);
+
+            $promotion->delete();
+            DB::commit();
+            return redirect()->back()->withError(__('messages.delete'));
+        }catch(\Exception $e){
+            DB::rollBack();
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
+
     // rollback all promotions
     public function rollbackAllPromotions(){
         DB::beginTransaction();
@@ -82,7 +102,7 @@ class StudentPromotionRepository implements StudentPromotionRepositoryInterface{
             }
             Promotion::truncate();
             DB::commit();
-            return redirect()->back()->withSuccess(__('messages.success'));
+            return redirect()->back()->withError(__('messages.delete'));
         }catch(\Exception $e){
             DB::rollBack();
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);

@@ -87,10 +87,28 @@
                             <div class="clearfix"></div>
                         </a>
                         <ul id="students" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="{{ route('students.index') }}">{{ __('mainside.studentsList') }}</a> </li>
-                            <li> <a href="{{ route('students.create') }}">{{ __('mainside.add_student') }}</a> </li>
-                            <li> <a href="{{ route('promotions.index') }}">{{ __('Students_trans.management_promotion') }}</a> </li>
-                            <li> <a href="{{ route('promotions.create') }}">{{ __('mainside.students_promotion') }}</a> </li>
+                            <li>
+                                <a href="javascript:void(0);" data-toggle="collapse" data-target="#students-info">
+                                    {{ __('mainside.students-info') }}
+                                    <div class="pull-right"><i class="ti-plus"></i></div>
+                                    <div class="clearfix"></div>
+                                </a>
+                                <ul id="students-info" class="collapse">
+                                    <li> <a href="{{ route('students.index') }}">{{ __('mainside.studentsList') }}</a> </li>
+                                    <li> <a href="{{ route('students.create') }}">{{ __('mainside.add_student') }}</a> </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" data-toggle="collapse" data-target="#students-promotions">
+                                    {{ __('mainside.students-promotions') }}
+                                    <div class="pull-right"><i class="ti-plus"></i></div>
+                                    <div class="clearfix"></div>
+                                </a>
+                                <ul id="students-promotions" class="collapse">
+                                    <li> <a href="{{ route('promotions.index') }}">{{ __('Students_trans.management_promotion') }}</a> </li>
+                                    <li> <a href="{{ route('promotions.create') }}">{{ __('mainside.students_promotion') }}</a> </li>
+                                </ul>
+                            </li>
                         </ul>
                     </li>
 

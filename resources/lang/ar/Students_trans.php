@@ -41,5 +41,7 @@ return [
     'section_to' => 'الي الفصل الدراسي',
     'academic_year_to' => 'الي سنة',
     'rollback_all_promotions' => 'تراجع كل الترقيات',
-    'Warning_All_Promotions' => 'هل انت متاكد من تراجع كل الترقيات ؟'
+    'Warning_All_Promotions' => 'هل انت متاكد من تراجع كل الترقيات ؟',
+    'rollback_Promotion' => 'تراجع الترقية',
+    'Warning_Promotion' => 'هل انت متاكد من تراجع هذة الترقية ؟',
 ];

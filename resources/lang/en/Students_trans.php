@@ -41,5 +41,7 @@ return [
     'section_to' => 'Section to',
     'academic_year_to' => 'Academic year to',
     'rollback_all_promotions' => 'Rollback all promotions',
-    'Warning_All_Promotions' => 'Are you sure you want to rollback all promotions ?'
+    'Warning_All_Promotions' => 'Are you sure you want to rollback all promotions ?',
+    'rollback_Promotion' => 'Rollback Promotion',
+    'Warning_Promotion' => 'Are you sure you want to rollback this promotion ?'
 ];

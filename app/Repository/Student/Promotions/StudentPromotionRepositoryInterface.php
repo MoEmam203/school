@@ -13,6 +13,9 @@ interface StudentPromotionRepositoryInterface {
     // store
     public function store($request);
 
+    // rollback one promotion
+    public function destroy($promotion);
+
     // rollback all promotions
     public function rollbackAllPromotions();
 }

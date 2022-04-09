@@ -52,7 +52,7 @@
                                 <th class="alert alert-success">{{ __('Students_trans.section_to')}}</th>
                                 <th class="alert alert-success">{{ __('Students_trans.academic_year_to')}}</th>
 
-                                {{-- <th>{{ __('general.Processes') }}</th> --}}
+                                <th>{{ __('general.Processes') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -72,24 +72,21 @@
                                     <td>{{ $promotion->t_section->name }}</td>
                                     <td>{{ $promotion->academic_year_to }}</td>
 
-                                    {{-- <td>
-                                        <a href="{{ route('students.edit',$student) }}" class="btn btn-info btn-sm">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
+                                    <td>
 
                                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                            data-target="#delete{{ $student->id }}"
+                                            data-target="#delete{{ $promotion->id }}"
                                             title="{{ __('general.Delete') }}"><i
                                             class="fa fa-trash"></i></button>
 
-                                        <a href="{{route('students.show',$student)}}" class="btn btn-warning btn-sm" role="button" aria-pressed="true"><i class="fa fa-eye"></i></a>
-                                    </td> --}}
+                                    </td>
                                 </tr>
 
+                                @include('students.promotions.models.rollbackOnePromotion')
                             @endforeach
                     </table>
                 </div>
-                @include('students.promotions.rollbackAllPromotionsModel')
+                @include('students.promotions.models.rollbackAllPromotionsModel')
             </div>
         </div>
     </div>
