@@ -13,7 +13,7 @@ class Promotion extends Model
     protected $guarded = [];
 
     public function student(){
-        return $this->belongsTo(Student::class,'student_id');
+        return $this->belongsTo(Student::class,'student_id')->withTrashed();
     }
 
     // Relations From

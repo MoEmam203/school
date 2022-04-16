@@ -50,5 +50,8 @@ return [
 
     // Graduated
     'return student' => 'تراجع الطالب',
-    'return_graduate' => 'هل انت متاكد من ارجاع الطالب ؟'
+    'return_graduate' => 'هل انت متاكد من ارجاع الطالب ؟',
+    'graduate' => 'نخريج',
+    'graduate_student' => 'تخريج طالب',
+    'Warning_Student_graduate' => 'هل انت متاكد من تخريج هذا الطالب ؟'
 ];

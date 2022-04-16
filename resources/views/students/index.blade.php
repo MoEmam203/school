@@ -67,8 +67,14 @@
                                             data-target="#delete{{ $student->id }}"
                                             title="{{ __('general.Delete') }}"><i
                                             class="fa fa-trash"></i></button>
+                                        
 
                                         <a href="{{route('students.show',$student)}}" class="btn btn-warning btn-sm" role="button" aria-pressed="true"><i class="fa fa-eye"></i></a>
+
+                                        <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal"
+                                            data-target="#graduate{{ $student->id }}"
+                                            title="{{ __('Students_trans.graduate') }}"><i 
+                                            class="fa fa-sign-out" aria-hidden="true"></i></button>
                                     </td>
                                 </tr>
 
@@ -90,6 +96,36 @@
                                                     @method('DELETE')
                                                     @csrf
                                                     {{ __('Students_trans.Warning_Student') }}
+                                                    <input type="text" class="form-control" value="{{$student->name}}" disabled>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('general.Close')
+                                                            }}</button>
+                                                        <button type="submit" class="btn btn-danger">{{ __('general.Submit') }}</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- graduate_modal_Student -->
+                                <div class="modal fade" id="graduate{{ $student->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 style="font-family: 'Cairo', sans-serif;" class="modal-title" id="exampleModalLabel">
+                                                    {{ __('Students_trans.graduate_student') }}
+                                                </h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="{{route('graduateStudent',$student)}}" method="post">
+                                                    @method('PUT')
+                                                    @csrf
+                                                    {{ __('Students_trans.Warning_Student_graduate') }}
                                                     <input type="text" class="form-control" value="{{$student->name}}" disabled>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('general.Close')

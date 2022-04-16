@@ -79,10 +79,17 @@
                                             title="{{ __('general.Delete') }}"><i
                                             class="fa fa-trash"></i></button>
 
+                                        @if (!$promotion->student->deleted_at)
+                                            <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal"
+                                                data-target="#graduate{{ $promotion->student->id }}"
+                                                title="{{ __('Students_trans.graduate') }}"><i 
+                                                class="fa fa-sign-out" aria-hidden="true"></i></button>
+                                        @endif
                                     </td>
                                 </tr>
 
                                 @include('students.promotions.models.rollbackOnePromotion')
+                                @include('students.promotions.models.graduateStudent')
                             @endforeach
                     </table>
                 </div>

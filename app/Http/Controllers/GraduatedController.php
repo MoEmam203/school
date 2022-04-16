@@ -32,7 +32,7 @@ class GraduatedController extends Controller
 
     public function show($id)
     {
-        //
+        return $this->graduated->show($id);
     }
 
     public function edit($id)
@@ -48,5 +48,9 @@ class GraduatedController extends Controller
     public function destroy($id)
     {
         return $this->graduated->destroy($id);
+    }
+
+    public function graduateStudent(Request $request,Student $student){
+        return $this->graduated->graduateStudent($request,$student);
     }
 }

@@ -56,6 +56,10 @@
                                     <td>{{ $student->classroom->name }}</td>
                                     <td>{{ $student->section->name }}</td>
                                     <td>
+                                        <a href="{{route('students.graduated.show',$student->id)}}" class="btn btn-outline-success btn-sm" role="button" aria-pressed="true">
+                                            {{ __('Students_trans.Show') }}
+                                        </a>
+
                                         <button type="button" class="btn btn-outline-info btn-sm" data-toggle="modal"
                                             data-target="#returnGraduatedStudent{{ $student->id }}">
                                             {{ __('Students_trans.return student') }}

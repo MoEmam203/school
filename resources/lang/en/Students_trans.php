@@ -50,5 +50,8 @@ return [
 
     // Graduated
     'return student' => 'Return student',
-    'return_graduate' => 'Are you sure you want to return this student ?'
+    'return_graduate' => 'Are you sure you want to return this student ?',
+    'graduate' => 'graduate',
+    'graduate_student' => 'Graduate student',
+    'Warning_Student_graduate' => 'Are you sure you want to graduate this student ?'
 ];

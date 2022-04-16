@@ -15,6 +15,12 @@ class GraduatedStudentRepository implements GraduatedStudentRepositoryInterface{
         ]);
     }
 
+    // show => display graduated student data
+    public function show($id){
+        $student = Student::onlyTrashed()->findOrFail($id);
+        return view('students.show',['student'=>$student]);
+    }
+
     // create => graduate students
     public function create(){
         $grades = Grade::all();
@@ -58,5 +64,11 @@ class GraduatedStudentRepository implements GraduatedStudentRepositoryInterface{
     public function destroy($id){
         Student::onlyTrashed()->findOrFail($id)->forceDelete();
         return redirect()->back()->withError(__('messages.delete'));
+    }
+
+    // graduateStudent => Graduate one student from student list or promotions list
+    public function graduateStudent($request,$student){
+        $student->delete();
+        return redirect()->back()->withSuccess(__('messages.update'));
     }
 }

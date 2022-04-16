@@ -68,5 +68,6 @@ Route::group(
         Route::delete('rollbackAllPromotions',[PromotionController::class,'rollbackAllPromotions'])->name('promotions.rollbackAllPromotions');
         // graduated student
         Route::resource('graduated',GraduatedController::class)->names('students.graduated');
+        Route::put('/student/graduate/{student}',[GraduatedController::class,'graduateStudent'])->name('graduateStudent');
     }
 );
