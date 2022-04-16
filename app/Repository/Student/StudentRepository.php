@@ -141,7 +141,7 @@ class StudentRepository implements StudentRepositoryInterface{
             $student->images()->delete();
 
             // remove student
-            $student->delete();
+            $student->forceDelete();
             return redirect()->back()->withError(__('messages.delete'));
         }catch(\Exception $e){
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);

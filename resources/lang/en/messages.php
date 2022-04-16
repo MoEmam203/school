@@ -5,5 +5,6 @@ return [
     'update' => 'Data updated successfully',
     'delete' => 'Data deleted successfully',
     'exists' => 'These data already exists',
-    'haveData' => 'This :first has :second, Delete :second first'
+    'haveData' => 'This :first has :second, Delete :second first',
+    'restore' => 'Data restored successfully'
 ];

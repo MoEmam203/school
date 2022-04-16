@@ -18,5 +18,8 @@ return [
     'add_student' => 'اضافة طالب جديد',
     'students_promotion' => 'ترقية الطلاب',
     'students-info' => 'معلومات الطلاب',
-    'students-promotions' => 'الترقيات'
+    'students-promotions' => 'الترقيات',
+    'students-graduated' => 'الطلاب المتخرجين',
+    'graduatedStudentsList' => 'قائمة الطلاب المتخرجين',
+    'graduateStudents' => 'تخريج طلاب'
 ];

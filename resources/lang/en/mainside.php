@@ -18,5 +18,8 @@ return [
     'add_student' => 'Add new student',
     'students_promotion' => 'Students promotion',
     'students-info' => 'Students information',
-    'students-promotions' => 'Promotions'
+    'students-promotions' => 'Promotions',
+    'students-graduated' => 'Graduated students',
+    'graduatedStudentsList' => 'Graduated Students List',
+    'graduateStudents' => 'Graduate Students'
 ];

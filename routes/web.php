@@ -4,6 +4,7 @@ use App\Http\Controllers\ClassroomController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GradeController;
+use App\Http\Controllers\GraduatedController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\StudentController;
@@ -65,5 +66,7 @@ Route::group(
         // promotion student
         Route::resource('promotions',PromotionController::class);
         Route::delete('rollbackAllPromotions',[PromotionController::class,'rollbackAllPromotions'])->name('promotions.rollbackAllPromotions');
+        // graduated student
+        Route::resource('graduated',GraduatedController::class)->names('students.graduated');
     }
 );

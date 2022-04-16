@@ -29,6 +29,9 @@ return [
     'Download' => 'تحميل',
     'delete_Attachment' => 'حذف المرفق',
     'Warning_Image' => 'هل انت متاكد من حذف هذا المرفق ؟',
+    'no_students' => 'لايوجد طلاب في هذا الفصل',
+
+    // Promotions
     'promotion_from' => 'الترقية من',
     'promotion_to' => 'الترقية الي',
     'management_promotion' => 'ادارة الترقيات',
@@ -44,4 +47,8 @@ return [
     'Warning_All_Promotions' => 'هل انت متاكد من تراجع كل الترقيات ؟',
     'rollback_Promotion' => 'تراجع الترقية',
     'Warning_Promotion' => 'هل انت متاكد من تراجع هذة الترقية ؟',
+
+    // Graduated
+    'return student' => 'تراجع الطالب',
+    'return_graduate' => 'هل انت متاكد من ارجاع الطالب ؟'
 ];

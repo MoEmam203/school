@@ -87,6 +87,7 @@
                             <div class="clearfix"></div>
                         </a>
                         <ul id="students" class="collapse" data-parent="#sidebarnav">
+                            <!-- Students info -->
                             <li>
                                 <a href="javascript:void(0);" data-toggle="collapse" data-target="#students-info">
                                     {{ __('mainside.students-info') }}
@@ -98,6 +99,8 @@
                                     <li> <a href="{{ route('students.create') }}">{{ __('mainside.add_student') }}</a> </li>
                                 </ul>
                             </li>
+
+                            <!-- Students promotions -->
                             <li>
                                 <a href="javascript:void(0);" data-toggle="collapse" data-target="#students-promotions">
                                     {{ __('mainside.students-promotions') }}
@@ -107,6 +110,19 @@
                                 <ul id="students-promotions" class="collapse">
                                     <li> <a href="{{ route('promotions.index') }}">{{ __('Students_trans.management_promotion') }}</a> </li>
                                     <li> <a href="{{ route('promotions.create') }}">{{ __('mainside.students_promotion') }}</a> </li>
+                                </ul>
+                            </li>
+
+                            <!-- Students graduated -->
+                            <li>
+                                <a href="javascript:void(0);" data-toggle="collapse" data-target="#students-graduated">
+                                    {{ __('mainside.students-graduated') }}
+                                    <div class="pull-right"><i class="ti-plus"></i></div>
+                                    <div class="clearfix"></div>
+                                </a>
+                                <ul id="students-graduated" class="collapse">
+                                    <li> <a href="{{ route('students.graduated.index') }}">{{ __('mainside.graduatedStudentsList') }}</a> </li>
+                                    <li> <a href="{{ route('students.graduated.create') }}">{{ __('mainside.graduateStudents') }}</a> </li>
                                 </ul>
                             </li>
                         </ul>

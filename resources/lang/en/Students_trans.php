@@ -29,6 +29,9 @@ return [
     'Download' => 'Download',
     'delete_Attachment' => 'Delete Attachment',
     'Warning_Image' => 'Are you sure you want to delete this image ?',
+    'no_students' => 'There are no students in this section',
+
+    // Promotions
     'promotion_from' => 'Promotion from',
     'promotion_to' => 'Promotion to',
     'management_promotion' => 'Management Promotion',
@@ -43,5 +46,9 @@ return [
     'rollback_all_promotions' => 'Rollback all promotions',
     'Warning_All_Promotions' => 'Are you sure you want to rollback all promotions ?',
     'rollback_Promotion' => 'Rollback Promotion',
-    'Warning_Promotion' => 'Are you sure you want to rollback this promotion ?'
+    'Warning_Promotion' => 'Are you sure you want to rollback this promotion ?',
+
+    // Graduated
+    'return student' => 'Return student',
+    'return_graduate' => 'Are you sure you want to return this student ?'
 ];

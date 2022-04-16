@@ -20,6 +20,7 @@ class CreateStudentsTable extends Migration
             $table->string('password');
             $table->date('date_of_birth');
             $table->string('academic_year');
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreignId('gender_id')->references('id')->on('genders')->onUpdate('cascade')->onDelete('cascade');
