@@ -16,5 +16,6 @@ return [
     'delete_Section' => 'حذف القسم',
     'Warning_Section' => 'هل انت متاكد من حذف القسم ؟',
     'teachers' => 'المعلمين',
-    'edit_section' => 'تعديل القسم'
+    'edit_section' => 'تعديل القسم',
+    'Classroom' => 'الفصل الدراسي'
 ];

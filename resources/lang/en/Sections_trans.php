@@ -16,5 +16,6 @@ return [
     'delete_Section' => 'Delete section',
     'Warning_Section' => 'Are u sure u want to remove this section ?',
     'teachers' => 'Teachers',
-    'edit_section' => 'Edit Section'
+    'edit_section' => 'Edit Section',
+    'Classroom' => 'Classroom'
 ];

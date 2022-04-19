@@ -44,6 +44,7 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th>{{ __('Sections_trans.Name') }}</th>
+                                                <th>{{ __('Sections_trans.Classroom') }}</th>
                                                 <th>{{ __('Sections_trans.Status') }}</th>
                                                 <th>{{ __('general.Processes') }}</th>
                                             </tr>
@@ -53,6 +54,7 @@
                                                 <tr>
                                                     <td>{{ ++$key }}</td>
                                                     <td>{{ $section->name }}</td>
+                                                    <td>{{ $section->classrooms->name }}</td>
                                                     <td>
                                                         @if ($section->status == 1)
                                                             <span class="badge badge-success">{{ __('Sections_trans.active') }}</span>
