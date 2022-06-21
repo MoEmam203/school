@@ -21,5 +21,7 @@ return [
     'students-promotions' => 'Promotions',
     'students-graduated' => 'Graduated students',
     'graduatedStudentsList' => 'Graduated Students List',
-    'graduateStudents' => 'Graduate Students'
+    'graduateStudents' => 'Graduate Students',
+    'fees' => 'Fees',
+    'feesList' => 'Fees List'
 ];

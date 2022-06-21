@@ -21,5 +21,7 @@ return [
     'students-promotions' => 'الترقيات',
     'students-graduated' => 'الطلاب المتخرجين',
     'graduatedStudentsList' => 'قائمة الطلاب المتخرجين',
-    'graduateStudents' => 'تخريج طلاب'
+    'graduateStudents' => 'تخريج طلاب',
+    'fees' => 'الرسوم الدراسية',
+    'feesList' => 'قائمة الرسوم الدراسية'
 ];

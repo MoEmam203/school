@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClassroomController;
+use App\Http\Controllers\FeeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GradeController;
@@ -69,5 +70,8 @@ Route::group(
         // graduated student
         Route::resource('graduated',GraduatedController::class)->names('students.graduated');
         Route::put('/student/graduate/{student}',[GraduatedController::class,'graduateStudent'])->name('graduateStudent');
+
+        // Fees
+        Route::resource('fees',FeeController::class)->names('fees');
     }
 );

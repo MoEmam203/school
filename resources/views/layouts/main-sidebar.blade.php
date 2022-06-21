@@ -128,6 +128,18 @@
                         </ul>
                     </li>
 
+                    <!-- Fees -->
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#fees">
+                            <div class="pull-left"><i class="ti-money"></i><span class="right-nav-text">{{ __('mainside.fees') }}</span>
+                            </div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="fees" class="collapse" data-parent="#sidebarnav">
+                            <li> <a href="{{ route('fees.index') }}">{{ __('mainside.feesList') }}</a> </li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>
