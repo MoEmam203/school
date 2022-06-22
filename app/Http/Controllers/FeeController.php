@@ -6,7 +6,6 @@ use App\Http\Requests\FeeRequest;
 use App\Models\Fee;
 use App\Models\Grade;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class FeeController extends Controller
 {
@@ -44,7 +43,6 @@ class FeeController extends Controller
      */
     public function store(FeeRequest $request)
     {
-        DB::beginTransaction();
         try{
             Fee::create([
                 'name' => ['en' => $request->name_en, 'ar' => $request->name_ar],
@@ -55,10 +53,8 @@ class FeeController extends Controller
                 'year' => $request->year
             ]);
 
-            DB::commit();
             return redirect()->back()->withSuccess(__('messages.success'));
         }catch(\Exception $e){
-            DB::rollBack();
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }

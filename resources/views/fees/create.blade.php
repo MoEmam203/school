@@ -40,23 +40,14 @@
                                 <div class="col">
                                     <label for="name_ar">{{__('Fees_trans.name_ar')}}</label>
                                     <input type="text" name="name_ar" class="form-control">
-                                    @error('name_ar')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
                                 </div>
                                 <div class="col">
                                     <label for="name_en">{{__('Fees_trans.name_en')}}</label>
                                     <input type="text" name="name_en" class="form-control">
-                                    @error('name_en')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
                                 </div>
                                 <div class="col">
                                     <label for="amount">{{__('Fees_trans.Amount')}}</label>
                                     <input type="number" name="amount" class="form-control">
-                                    @error('amount')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
                                 </div>
                             </div>
                             <br>
@@ -69,9 +60,6 @@
                                             <option value="{{$grade->id}}">{{$grade->name}}</option>
                                         @endforeach
                                     </select>
-                                    @error('grade_id')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
                                 </div>
                                 <div class="form-group col">
                                     <label for="classroom_id">{{__('Fees_trans.Classroom')}}</label>
@@ -79,9 +67,6 @@
                                         <option selected disabled>{{__('Fees_trans.Choose')}}...</option>
                                         
                                     </select>
-                                    @error('classroom_id')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
                                 </div>
 
                                 <div class="col">
@@ -96,9 +81,6 @@
                                                 <option value="{{ $year}}">{{ $year }}</option>
                                             @endfor
                                         </select>
-                                        @error('year')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -106,9 +88,6 @@
                                 <div class="col">
                                     <label for="description">{{ __('Fees_trans.Description') }}</label>
                                     <textarea name="description" id="description" cols="20" rows="5" class="form-control"></textarea>
-                                    @error('description')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
                                 </div>
                             </div>
                             <br>
