@@ -78,7 +78,11 @@ class FeeController extends Controller
      */
     public function edit(Fee $fee)
     {
-        //
+        $grades = Grade::all();
+        return view('fees.edit',[
+            'fee' => $fee,
+            'grades' => $grades
+        ]);
     }
 
     /**
@@ -88,9 +92,22 @@ class FeeController extends Controller
      * @param  \App\Models\Fee  $fee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Fee $fee)
+    public function update(FeeRequest $request, Fee $fee)
     {
-        //
+        try{
+            $fee->update([
+                'name' => ['en' => $request->name_en, 'ar' => $request->name_ar],
+                'amount' => $request->amount,
+                'grade_id' => $request->grade_id,
+                'classroom_id' => $request->classroom_id,
+                'description' => $request->description,
+                'year' => $request->year
+            ]);
+
+            return redirect()->back()->withSuccess(__('messages.update'));
+        }catch(\Exception $e){
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
     }
 
     /**
@@ -101,6 +118,11 @@ class FeeController extends Controller
      */
     public function destroy(Fee $fee)
     {
-        //
+        try{
+            $fee->delete();
+            return redirect()->back()->withError(__('messages.delete'));
+        }catch(\Exception $e){
+            return redirect()->back()->withErrors(['error'=> $e->getMessage()]);
+        }
     }
 }

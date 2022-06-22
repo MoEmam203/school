@@ -11,5 +11,8 @@ return [
     'Year' => 'Year',
     'name_ar' => 'Fees name in arabic',
     'name_en' => 'Fees name in english',
-    'Choose' => 'Choose'
+    'Choose' => 'Choose',
+    'editFee' => 'Edit Fee',
+    'delete_Fee' => 'Delete Fee',
+    'Warning_Fee' => 'Are u sure u want to remove this fee ?'
 ];
